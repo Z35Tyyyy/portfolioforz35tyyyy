@@ -1,90 +1,204 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
-  <div class="iframe-container">
-    <iframe src="https://tryhackme.com/api/v2/badges/public-profile?userPublicId=3870098" style="border:none;"></iframe>
-  </div>
-<head>
-  <meta charset="utf-8" />
-  <meta name="generator" content="pandoc" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
-  <meta name="author" content="Kanishk Singh" />
-  <title>Kanishk Singh</title>
-  <link rel="stylesheet" href="src/reset.css" />
-  <link rel="stylesheet" href="src/index.css" />
-</head>
-<table class="header">
-  <tr>
-    <td colspan="2" rowspan="2" class="width-auto">
-      <h1 class="title">Kanishk Singh</h1> 
-      <span class="subtitle">a.k.a ZestyPesky</span>
-    </td>
-    <th>Rank</th>
-    <td class="width-min">Seeker</td>
-  </tr>
-  <tr>
-    <td rowspan="2" colspan="3" class="width-auto">
-      <!-- Placeholder content or description -->
-      <a href="https://github.com/EzHavoc" target="_blank">@github</a> 
-      <a href="https://tryhackme.com/p/ZestyPesky" target="_blank">@tryhackme</a>
-      <a href="https://www.linkedin.com/in/kanishk-singh-a097a2117/" target="_blank">@linkedin</a>
-      <a href="https://www.instagram.com/_kan.i.shk_/" target="_blank">@instagram</a>
-      <a href="https://x.com/KanishkS40568" target="_blank">@x.com</a>
-    </td>
-  </tr>
-  <tr>
-    <th class="width-min">B10GS</th>
-    <td class="width-auto"><a href="https://wickstrom.tech"><cite>Zesty Writes</cite></a></td>
-  </tr>
-</table>
-<style>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="generator" content="pandoc" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+    <meta name="author" content="Kanishk Singh" />
+    <title>Kanishk Singh</title>
+    <link rel="stylesheet" href="src/reset.css" />
+    <link rel="stylesheet" href="src/index.css" />
+    <style>
+      a:hover {
+        color: lightcoral;
+        transform: scale(1.05);
+      }
+    </style>
+  </head>
 
-  /* Hover effect for all links */
-  a:hover {
-    color: lightcoral; /* Hover color */
-    transform: scale(1.05); /* Slight grow effect (optional, can remove if too much) */
-  }
+  <body>
+    <!-- Spark canvas root -->
+    <div id="spark-root" style="position: fixed; inset: 0; z-index: 0; pointer-events: none;"></div>
 
-</style>
-<td class="text-left" style="width: fit-content; padding: 10px;">
-  <a href="/src/doc/Kanishk_Singh_CV (3).pdf" target="_blank" class="resume-link">Resume</a>
-</td>
-<hr>
-<nav id="TOC" role="doc-toc">
-<h2 id="toc-title">Contents</h2>
-<ul class="incremental">
-<li><a href="#introduction" id="toc-introduction">Introduction</a></li>
-<li><a href="#techskills" id="toc-techskills">Hecker Skills :P</a></li>
-<li><a href="#projects" id="toc-projevts">Projects</a></li>
-</ul>
-<hr>
-</nav><h2 id="introduction" style="text-transform: none; font-size: 1.5rem;">root@zestypesky: ~$ whoami</h2>
-<p>Hello World! My name is Kanishk Singh a.k.a ZestyPesky.I am an aspiring Red Teamer. I specialize (atleast try to XD) in offensive security,love digging into vulnerabilities and like to constantly challenge myself by participating in CTFs.</p>
-<p>I also organize CTFs for the community in my college one such instance being "Decipher-Blitz" my alias? --> "blitz_taskmaster".</p>
-<p>This is also the place where I share my personal blogs @ZestyWrites and sum up my up and coming projects.</p>
-<hr>
-</nav><h2 id="teckskills" style="text-transform: none; font-size: 1.5rem;">Hecker Skills :P</h2>
-<ul class="incremental">
-  <li>Nmap</li>
-  <li>BurpSuite</li>
-  <li>CyberChef</li>
-  <li>Wireshark</li>
-  <li>Shodan</li>
-  <li>Ghidra</li>
-  <li>ELK</li>
-  <li>Postman</li>
-  <li>JohntheRipper</li>
-  <li>Atomic Red</li>
-  <li>YARA</li>
-  <li>Sysmon</li>
-  </ul>
-  <hr>
-</nav><h2 id="projects" style="text-transform: none; font-size: 1.5rem;">Projects</h2>
-<p>Coming SOon!</p>
-<hr>
-<nav style="display: flex; align-items: center; gap: 1.5rem;">
-  <ul style="display: flex; list-style: none; gap: 1rem; margin: 0; padding: 0;">
-    <li><a href="/">Home</a></li>
-    <li><a href="https://singhkanishk.xyz">Me</a></li>
-    <li><a href="mailto:kanishksingh778@gmail.com">Mail</a></li>
-  </ul>
-</nav>
+    <!-- Main page content -->
+    <div id="app">
+      <div class="iframe-container">
+        <iframe src="https://tryhackme.com/api/v2/badges/public-profile?userPublicId=3870098" style="border:none;"></iframe>
+      </div>
+
+      <table class="header">
+        <tr>
+          <td colspan="2" rowspan="2" class="width-auto">
+            <h1 class="title">Kanishk Singh</h1>
+            <span class="subtitle">a.k.a ZestyPesky</span>
+          </td>
+          <th>Rank</th>
+          <td class="width-min">Voyager</td>
+        </tr>
+        <tr>
+          <td rowspan="2" colspan="3" class="width-auto">
+            <a href="https://github.com/EzHavoc" target="_blank">@github</a>
+            <a href="https://tryhackme.com/p/ZestyPesky" target="_blank">@tryhackme</a>
+            <a href="https://www.linkedin.com/in/kanishk-singh-a097a2117/" target="_blank">@linkedin</a>
+            <a href="https://www.instagram.com/_kan.i.shk_/" target="_blank">@instagram</a>
+            <a href="https://x.com/KanishkS40568" target="_blank">@x.com</a>
+          </td>
+        </tr>
+        <tr>
+          <th class="width-min">B10GS</th>
+          <td class="width-auto"><a href="https://wickstrom.tech"><cite>Zesty Writes</cite></a></td>
+        </tr>
+      </table>
+
+      <td class="text-left" style="width: fit-content; padding: 10px;">
+        <a href="/src/doc/Kanishk_Singh_CV (3).pdf" target="_blank" class="resume-link">Resume</a>
+      </td>
+      <hr>
+
+      <nav id="TOC" role="doc-toc">
+        <h2 id="toc-title">Contents</h2>
+        <ul class="incremental">
+          <li><a href="#introduction" id="toc-introduction">Introduction</a></li>
+          <li><a href="#techskills" id="toc-techskills">Hecker Skills :P</a></li>
+          <li><a href="#projects" id="toc-projevts">Projects</a></li>
+        </ul>
+        <hr>
+      </nav>
+
+      <h2 id="introduction" style="text-transform: none; font-size: 1.5rem;">root@zestypesky: ~$ whoami</h2>
+      <p>Hello World! My name is Kanishk Singh a.k.a ZestyPesky.I am an aspiring Red Teamer. I specialize (atleast try to XD) in offensive security,love digging into vulnerabilities and like to constantly challenge myself by participating in CTFs.</p>
+      <p>I also organize CTFs for the community in my college one such instance being "Decipher-Blitz" my alias? --> "blitz_taskmaster".</p>
+      <p>This is also the place where I share my personal blogs @ZestyWrites and sum up my up and coming projects.</p>
+      <hr>
+      <h2 id="teckskills" style="text-transform: none; font-size: 1.5rem;">Hecker Skills :P</h2>
+      <ul class="incremental">
+        <li>Nmap</li><li>BurpSuite</li><li>CyberChef</li><li>Wireshark</li><li>Shodan</li>
+        <li>Ghidra</li><li>ELK</li><li>Postman</li><li>JohntheRipper</li><li>Atomic Red</li>
+        <li>YARA</li><li>Sysmon</li>
+      </ul>
+      <hr>
+      <h2 id="projects" style="text-transform: none; font-size: 1.5rem;">Projects</h2>
+      <p>Coming SOon!</p>
+      <hr>
+
+      <nav style="display: flex; align-items: center; gap: 1.5rem;">
+        <ul style="display: flex; list-style: none; gap: 1rem; margin: 0; padding: 0;">
+          <li><a href="/">Home</a></li>
+          <li><a href="https://singhkanishk.xyz">Me</a></li>
+          <li><a href="mailto:kanishksingh778@gmail.com">Mail</a></li>
+        </ul>
+      </nav>
+    </div>
+
+    <!-- React & Babel -->
+    <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <!-- ClickSpark Component -->
+    <script type="text/babel">
+      const { useRef, useEffect, useCallback } = React;
+
+      const ClickSpark = ({
+        sparkColor = "#ff0080",
+        sparkSize = 10,
+        sparkRadius = 15,
+        sparkCount = 8,
+        duration = 400,
+        easing = "ease-out",
+        extraScale = 1.0
+      }) => {
+        const canvasRef = useRef(null);
+        const sparksRef = useRef([]);
+
+        const easeFunc = useCallback((t) => {
+          switch (easing) {
+            case "linear": return t;
+            case "ease-in": return t * t;
+            case "ease-in-out": return t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t;
+            default: return t * (2 - t);
+          }
+        }, [easing]);
+
+        useEffect(() => {
+          const canvas = canvasRef.current;
+          const ctx = canvas.getContext("2d");
+
+          const resize = () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+          };
+
+          resize();
+          window.addEventListener("resize", resize);
+
+          let animationId;
+          const draw = (ts) => {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            sparksRef.current = sparksRef.current.filter((spark) => {
+              const elapsed = ts - spark.startTime;
+              if (elapsed > duration) return false;
+              const progress = easeFunc(elapsed / duration);
+              const d = progress * sparkRadius * extraScale;
+              const l = sparkSize * (1 - progress);
+              const x1 = spark.x + d * Math.cos(spark.angle);
+              const y1 = spark.y + d * Math.sin(spark.angle);
+              const x2 = spark.x + (d + l) * Math.cos(spark.angle);
+              const y2 = spark.y + (d + l) * Math.sin(spark.angle);
+              ctx.strokeStyle = sparkColor;
+              ctx.lineWidth = 2;
+              ctx.beginPath();
+              ctx.moveTo(x1, y1);
+              ctx.lineTo(x2, y2);
+              ctx.stroke();
+              return true;
+            });
+            animationId = requestAnimationFrame(draw);
+          };
+          animationId = requestAnimationFrame(draw);
+
+          return () => {
+            window.removeEventListener("resize", resize);
+            cancelAnimationFrame(animationId);
+          };
+        }, [sparkColor, sparkSize, sparkRadius, duration, easeFunc, extraScale]);
+
+        useEffect(() => {
+          const onClick = (e) => {
+            const canvas = canvasRef.current;
+            const rect = canvas.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            const time = performance.now();
+            sparksRef.current.push(
+              ...Array.from({ length: sparkCount }, (_, i) => ({
+                x, y,
+                angle: (2 * Math.PI * i) / sparkCount,
+                startTime: time
+              }))
+            );
+          };
+          window.addEventListener("click", onClick);
+          return () => window.removeEventListener("click", onClick);
+        }, [sparkCount]);
+
+        return (
+          <canvas
+            ref={canvasRef}
+            style={{
+              position: "fixed",
+              top: 0, left: 0,
+              width: "100%",
+              height: "100%",
+              pointerEvents: "none", // <- THIS FIXES THE LINK BLOCKING
+              zIndex: 9999
+            }}
+          />
+        );
+      };
+
+      const root = ReactDOM.createRoot(document.getElementById("spark-root"));
+      root.render(<ClickSpark />);
+    </script>
+  </body>
+</html>

@@ -470,8 +470,8 @@ label input {
 }
 .iframe-container {
   position: absolute;
-  top: 33px; /* optional: adjust as needed */
-  right: 170px; /* optional: adjust as needed */
+  top: 55px; /* optional: adjust as needed */
+  right: 150px; /* optional: adjust as needed */
   padding: 10px; /* optional: adds some spacing from edges */
   z-index: 1000; /* make sure it stays on top */
 }
