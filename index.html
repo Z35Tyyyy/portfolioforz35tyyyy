@@ -5,6 +5,8 @@
     <meta name="generator" content="pandoc" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
     <meta name="author" content="Kanishk Singh" />
+    <meta name="description" content="Portfolio of Kanishk Singh (ZestyPesky) - Aspiring Red Teamer, security enthusiast, CTF creator and tech blogger." />
+    <meta name="theme-color" content="#0d0d0d" />
     <title>Kanishk Singh</title>
     <link rel="stylesheet" href="src/reset.css" />
     <link rel="stylesheet" href="src/index.css" />
@@ -22,9 +24,18 @@
 
     <!-- Main page content -->
     <div id="app">
-      <div class="iframe-container">
-        <iframe src="https://tryhackme.com/api/v2/badges/public-profile?userPublicId=3870098" style="border:none;"></iframe>
-      </div>
+<!-- Desktop Badge -->
+<div class="iframe-container badge-desktop">
+  <iframe src="https://tryhackme.com/api/v2/badges/public-profile?userPublicId=3870098"
+          style="border:none; width:100%; height:100%;"></iframe>
+</div>
+
+<!-- Mobile Badge -->
+<div class="iframe-container badge-mobile">
+  <iframe src="https://tryhackme.com/api/v2/badges/public-profile?userPublicId=3870098"
+          style="border:none; width:100%; height:100%;"></iframe>
+</div>
+
 
       <table class="header">
         <tr>
@@ -50,9 +61,10 @@
         </tr>
       </table>
 
-      <td class="text-left" style="width: fit-content; padding: 10px;">
+      <div class="text-left" style="width: fit-content; padding: 10px;">
         <a href="/src/doc/Kanishk_Singh_CV (3).pdf" target="_blank" class="resume-link">Resume</a>
-      </td>
+      </div>
+
       <hr>
 
       <nav id="TOC" role="doc-toc">
@@ -60,25 +72,30 @@
         <ul class="incremental">
           <li><a href="#introduction" id="toc-introduction">Introduction</a></li>
           <li><a href="#techskills" id="toc-techskills">Hecker Skills :P</a></li>
-          <li><a href="#projects" id="toc-projevts">Projects</a></li>
+          <li><a href="#projects" id="toc-projects">Projects</a></li>
         </ul>
         <hr>
       </nav>
 
       <h2 id="introduction" style="text-transform: none; font-size: 1.5rem;">root@zestypesky: ~$ whoami</h2>
-      <p>Hello World! My name is Kanishk Singh a.k.a ZestyPesky.I am an aspiring Red Teamer. I specialize (atleast try to XD) in offensive security,love digging into vulnerabilities and like to constantly challenge myself by participating in CTFs.</p>
-      <p>I also organize CTFs for the community in my college one such instance being "Decipher-Blitz" my alias? --> "blitz_taskmaster".</p>
-      <p>This is also the place where I share my personal blogs @ZestyWrites and sum up my up and coming projects.</p>
+      <p>Hello World! My name is Kanishk Singh a.k.a ZestyPesky. I am an aspiring Red Teamer. I specialize (at least try to XD) in offensive security, love digging into vulnerabilities and constantly challenge myself by participating in CTFs.</p>
+      <p>I also organize CTFs for the community in my college — one such instance being "Decipher-Blitz" (my alias? --> "blitz_taskmaster").</p>
+      <p>This is also the place where I share my personal blogs @ZestyWrites and sum up my up-and-coming projects.</p>
+
       <hr>
-      <h2 id="teckskills" style="text-transform: none; font-size: 1.5rem;">Hecker Skills :P</h2>
+
+      <h2 id="techskills" style="text-transform: none; font-size: 1.5rem;">Hecker Skills :P</h2>
       <ul class="incremental">
         <li>Nmap</li><li>BurpSuite</li><li>CyberChef</li><li>Wireshark</li><li>Shodan</li>
         <li>Ghidra</li><li>ELK</li><li>Postman</li><li>JohntheRipper</li><li>Atomic Red</li>
         <li>YARA</li><li>Sysmon</li>
       </ul>
+
       <hr>
+
       <h2 id="projects" style="text-transform: none; font-size: 1.5rem;">Projects</h2>
-      <p>Coming SOon!</p>
+      <p>Coming Soon!</p>
+
       <hr>
 
       <nav style="display: flex; align-items: center; gap: 1.5rem;">
@@ -190,7 +207,7 @@
               top: 0, left: 0,
               width: "100%",
               height: "100%",
-              pointerEvents: "none", // <- THIS FIXES THE LINK BLOCKING
+              pointerEvents: "none",
               zIndex: 9999
             }}
           />
