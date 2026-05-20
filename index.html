@@ -153,120 +153,222 @@
     <!-- ========== HOME CONTENT ========== -->
     <div id="content-home">
 
-    <!-- Proof of Work Section -->
-    <div class="section-wrapper">
-      <h3 class="section-label"><span class="asterisk">*</span> proof of work</h3>
-
-      <div class="pow-carousel" id="pow-carousel">
-        <div class="pow-carousel-track" id="pow-carousel-track">
-
-          <!-- Card 1 -->
-          <div class="pw-card pow-slide">
-            <div class="pw-image"></div>
-            <div class="pw-header">
-              <h4 class="pw-title">Project Title</h4>
-              <div class="social-links"></div>
-            </div>
-            <p class="pw-desc">Project description goes here.</p>
-            <div class="pw-tags"></div>
+      <!-- Terminal in 3D space -->
+      <div class="hero-3d" id="hero-3d">
+        <canvas id="hero-3d-canvas"></canvas>
+        <div class="term-frame" id="term-frame">
+          <div class="term-bar">
+            <span class="term-dot dot-red"></span>
+            <span class="term-dot dot-yellow"></span>
+            <span class="term-dot dot-green"></span>
+            <span class="term-title">~/zestypesky — zsh</span>
           </div>
-
-          <!-- Card 2 -->
-          <div class="pw-card pow-slide">
-            <div class="pw-image"></div>
-            <div class="pw-header">
-              <h4 class="pw-title">Project Title</h4>
-              <div class="social-links"></div>
-            </div>
-            <p class="pw-desc">Project description goes here.</p>
-            <div class="pw-tags"></div>
-          </div>
-
-          <!-- Card 3 -->
-          <div class="pw-card pow-slide">
-            <div class="pw-image"></div>
-            <div class="pw-header">
-              <h4 class="pw-title">Project Title</h4>
-              <div class="social-links"></div>
-            </div>
-            <p class="pw-desc">Project description goes here.</p>
-            <div class="pw-tags"></div>
-          </div>
-
-          <!-- Card 4 -->
-          <div class="pw-card pow-slide">
-            <div class="pw-image"></div>
-            <div class="pw-header">
-              <h4 class="pw-title">Project Title</h4>
-              <div class="social-links"></div>
-            </div>
-            <p class="pw-desc">Project description goes here.</p>
-            <div class="pw-tags"></div>
-          </div>
-
-        </div>
-
-        <!-- Carousel Nav Arrows -->
-        <button class="pow-arrow pow-arrow-left" id="pow-prev" aria-label="Previous slide">←</button>
-        <button class="pow-arrow pow-arrow-right" id="pow-next" aria-label="Next slide">→</button>
-
-        <!-- Dot Indicators -->
-        <div class="pow-dots" id="pow-dots"></div>
-      </div>
-
-      <a href="#projects" class="pw-more" id="pow-more-link">〰 more</a>
-    </div>
-
-    <!-- Work Experience Section -->
-    <div class="section-wrapper">
-      <h3 class="section-label"><span class="asterisk">*</span> work experience</h3>
-
-      <!-- Template Work Card -->
-      <div class="work-card">
-        <div class="work-header">
-          <div class="work-title-group">
-            <div class="work-logo"></div>
-            <div>
-              <h4 class="work-title">Company Name</h4>
-              <p class="work-subtitle">Role Title</p>
-            </div>
-          </div>
-          <div class="work-meta">
-            <p class="role">Duration</p>
-            <p class="loc">Location</p>
-          </div>
-        </div>
-
-        <div class="work-tech">
-          <p class="work-tech-title">Technologies</p>
-          <div class="pw-tags">
-            <!-- Add <span class="pw-tag">Name</span> here -->
+          <div class="term-body" id="term-body"></div>
+          <div class="term-input-line" id="term-input-line">
+            <span class="term-prompt">zesty@portfolio<span class="term-prompt-sep">:</span><span
+                class="term-prompt-path">~</span><span class="term-prompt-sep">$</span></span>
+            <span class="term-typed" id="term-typed"></span>
+            <span class="term-cursor">&#9646;</span>
+            <input id="term-input" type="text" autocomplete="off" autocapitalize="off" spellcheck="false"
+              aria-label="Terminal input" />
           </div>
         </div>
       </div>
-    </div>
 
-    <!-- Tech Stack Section -->
-    <div class="section-wrapper">
-      <h3 class="section-label"><span class="asterisk">*</span> tech stack</h3>
-      <div id="techstack-root"></div>
-    </div>
+      <!-- Proof of Work Section -->
+      <div class="section-wrapper">
+        <h3 class="section-label"><span class="asterisk">*</span> proof of work</h3>
 
-    <!-- Dino Game Section -->
-    <div class="section-wrapper">
-      <h3 class="section-label"><span class="asterisk">*</span> have ADHD?</h3>
-      <p class="dino-hint">press space or ↑ to start</p>
-      <div data-speed="6" data-mute-audio="true" data-save-high-score="true" class="dinogame-shortcode">
-        <div id="dino-game-wrapper" class="dino-game-wrapper">
-          <div class="dino-icon dino-initial-icon" alt=""></div>
-          <div id="dino-game">
-            <img id="dinogame-sprites-1x" style="display:none;" class="skip-lazy" src="src/img/game-sprites-1x.png">
-            <img id="dinogame-sprites-2x" style="display:none;" class="skip-lazy" src="src/img/game-sprites-2x.png">
-            <template id="audio-resources"></template>
+        <div class="pow-carousel" id="pow-carousel">
+          <div class="pow-carousel-track" id="pow-carousel-track">
+
+            <!-- Card 1 - ServeX-SideWalk -->
+            <div class="pw-card pow-slide">
+              <img src="./ServeX-SideWalk.png" alt="ServeX-SideWalk preview" class="pw-image" loading="lazy">
+              <div class="pw-content">
+                <div class="pw-header">
+                  <h4 class="pw-title">ServeX-SideWalk</h4>
+                  <span class="pw-year">2025</span>
+                </div>
+                <p class="pw-desc">Full-stack staff dashboard with real-time order tracking and secure demo access for
+                  cafe environments.</p>
+                <div class="pw-tags">
+                  <img src="https://cdn.simpleicons.org/typescript" alt="" title="TypeScript" class="pw-tech-icon">
+                  <img src="https://cdn.simpleicons.org/react" alt="" title="React" class="pw-tech-icon">
+                  <img src="https://cdn.simpleicons.org/css" alt="" title="CSS3" class="pw-tech-icon">
+                  <img src="https://cdn.simpleicons.org/vercel" alt="" title="Vercel" class="pw-tech-icon">
+                </div>
+                <div class="pw-links">
+                  <a href="https://github.com/Z35Tyyyy/ServeX-SideWalk" target="_blank" rel="noopener noreferrer"
+                    class="pw-link">github ↗</a>
+                  <a href="https://serve-x-side-walk.vercel.app/" target="_blank" rel="noopener noreferrer"
+                    class="pw-link">live ↗</a>
+                </div>
+              </div>
+            </div>
+
+            <!-- Card 2 - Argos -->
+            <div class="pw-card pow-slide">
+              <img src="./Argos.png" alt="Argos preview" class="pw-image" loading="lazy">
+              <div class="pw-content">
+                <div class="pw-header">
+                  <h4 class="pw-title">Argos</h4>
+                  <span class="pw-year">2026</span>
+                </div>
+                <p class="pw-desc">High-assurance File Integrity Monitor with cryptographic hash chaining and
+                  AI-assisted anomaly detection.</p>
+                <div class="pw-tags">
+                  <img src="https://cdn.simpleicons.org/python" alt="" title="Python" class="pw-tech-icon">
+                  <img src="https://cdn.simpleicons.org/sqlite" alt="" title="SQLite" class="pw-tech-icon">
+                  <img src="https://cdn.simpleicons.org/gnubash" alt="" title="CLI" class="pw-tech-icon">
+                </div>
+                <div class="pw-links">
+                  <a href="https://github.com/Z35Tyyyy/Argos" target="_blank" rel="noopener noreferrer"
+                    class="pw-link">github ↗</a>
+                  <a href="https://argos.kanishkkkk.xyz/" target="_blank" rel="noopener noreferrer" class="pw-link">docs
+                    ↗</a>
+                </div>
+              </div>
+            </div>
+
+            <!-- Card 3 - Kleos -->
+            <div class="pw-card pow-slide">
+              <img src="./Kleos.png" alt="Kleos preview" class="pw-image" loading="lazy">
+              <div class="pw-content">
+                <div class="pw-header">
+                  <h4 class="pw-title">Kleos</h4>
+                  <span class="pw-year">2025</span>
+                </div>
+                <p class="pw-desc">Neural-driven ATS synthesis platform for elite career architecture and professional
+                  narrative optimization.</p>
+                <div class="pw-tags">
+                  <img src="https://cdn.simpleicons.org/javascript" alt="" title="JavaScript" class="pw-tech-icon">
+                  <img src="https://cdn.simpleicons.org/nodedotjs" alt="" title="Node.js" class="pw-tech-icon">
+                  <img src="https://cdn.simpleicons.org/express" alt="" title="Express" class="pw-tech-icon">
+                  <img src="https://cdn.simpleicons.org/railway" alt="" title="Railway" class="pw-tech-icon">
+                </div>
+                <div class="pw-links">
+                  <a href="https://github.com/Z35Tyyyy/Kleos" target="_blank" rel="noopener noreferrer"
+                    class="pw-link">github ↗</a>
+                  <a href="https://kleos-production.up.railway.app/" target="_blank" rel="noopener noreferrer"
+                    class="pw-link">live ↗</a>
+                </div>
+              </div>
+            </div>
+
+            <!-- Card 4 - QR Code Generator -->
+            <div class="pw-card pow-slide">
+              <img src="./QR%20CodeGen.png" alt="QR Code Generator preview" class="pw-image" loading="lazy">
+              <div class="pw-content">
+                <div class="pw-header">
+                  <h4 class="pw-title">QR Code Generator</h4>
+                  <span class="pw-year">2025</span>
+                </div>
+                <p class="pw-desc">Brutalist-styled QR generator with custom dot styles, center logos, and client-side
+                  image processing.</p>
+                <div class="pw-tags">
+                  <img src="https://cdn.simpleicons.org/html5" alt="" title="HTML5" class="pw-tech-icon">
+                  <img src="https://cdn.simpleicons.org/css" alt="" title="CSS3" class="pw-tech-icon">
+                  <img src="https://cdn.simpleicons.org/javascript" alt="" title="JavaScript" class="pw-tech-icon">
+                  <img src="https://cdn.simpleicons.org/vercel" alt="" title="Vercel" class="pw-tech-icon">
+                </div>
+                <div class="pw-links">
+                  <a href="https://github.com/Z35Tyyyy/QR-Code-Generator" target="_blank" rel="noopener noreferrer"
+                    class="pw-link">github ↗</a>
+                  <a href="https://qr-code-generator-rho-gold.vercel.app/" target="_blank" rel="noopener noreferrer"
+                    class="pw-link">live ↗</a>
+                </div>
+              </div>
+            </div>
+
+            <!-- Card 5 - PicShrink -->
+            <div class="pw-card pow-slide">
+              <img src="./PicShrink.png" alt="PicShrink preview" class="pw-image" loading="lazy">
+              <div class="pw-content">
+                <div class="pw-header">
+                  <h4 class="pw-title">PicShrink</h4>
+                  <span class="pw-year">2024</span>
+                </div>
+                <p class="pw-desc">Smart image compression tool with drag-and-drop, real-time preview, and high-fidelity
+                  output.</p>
+                <div class="pw-tags">
+                  <img src="https://cdn.simpleicons.org/nextdotjs" alt="" title="Next.js" class="pw-tech-icon">
+                  <img src="https://cdn.simpleicons.org/typescript" alt="" title="TypeScript" class="pw-tech-icon">
+                  <img src="https://cdn.simpleicons.org/tailwindcss" alt="" title="Tailwind CSS" class="pw-tech-icon">
+                  <img src="https://cdn.simpleicons.org/vercel" alt="" title="Vercel" class="pw-tech-icon">
+                </div>
+                <div class="pw-links">
+                  <a href="https://github.com/Z35Tyyyy/PicShrink" target="_blank" rel="noopener noreferrer"
+                    class="pw-link">github ↗</a>
+                  <a href="https://picshrink-kanishk-singhs-projects-ecc343ba.vercel.app/" target="_blank"
+                    rel="noopener noreferrer" class="pw-link">live ↗</a>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Carousel Nav Arrows -->
+          <button class="pow-arrow pow-arrow-left" id="pow-prev" aria-label="Previous slide">←</button>
+          <button class="pow-arrow pow-arrow-right" id="pow-next" aria-label="Next slide">→</button>
+
+          <!-- Dot Indicators -->
+          <div class="pow-dots" id="pow-dots"></div>
+        </div>
+
+        <a href="#projects" class="pw-more" id="pow-more-link">〰 more</a>
+      </div>
+
+      <!-- Work Experience Section -->
+      <div class="section-wrapper">
+        <h3 class="section-label"><span class="asterisk">*</span> work experience</h3>
+
+        <!-- Template Work Card -->
+        <div class="work-card">
+          <div class="work-header">
+            <div class="work-title-group">
+              <div class="work-logo"></div>
+              <div>
+                <h4 class="work-title">Company Name</h4>
+                <p class="work-subtitle">Role Title</p>
+              </div>
+            </div>
+            <div class="work-meta">
+              <p class="role">Duration</p>
+              <p class="loc">Location</p>
+            </div>
+          </div>
+
+          <div class="work-tech">
+            <p class="work-tech-title">Technologies</p>
+            <div class="pw-tags">
+              <!-- Add <span class="pw-tag">Name</span> here -->
+            </div>
           </div>
         </div>
       </div>
-    </div>
+
+      <!-- Tech Stack Section -->
+      <div class="section-wrapper">
+        <h3 class="section-label"><span class="asterisk">*</span> tech stack</h3>
+        <div id="techstack-root"></div>
+      </div>
+
+      <!-- Dino Game Section -->
+      <div class="section-wrapper">
+        <h3 class="section-label"><span class="asterisk">*</span> have ADHD?</h3>
+        <p class="dino-hint">press space or ↑ to start</p>
+        <div data-speed="6" data-mute-audio="true" data-save-high-score="true" class="dinogame-shortcode">
+          <div id="dino-game-wrapper" class="dino-game-wrapper">
+            <div class="dino-icon dino-initial-icon" alt=""></div>
+            <div id="dino-game">
+              <img id="dinogame-sprites-1x" style="display:none;" class="skip-lazy" src="src/img/game-sprites-1x.png">
+              <img id="dinogame-sprites-2x" style="display:none;" class="skip-lazy" src="src/img/game-sprites-2x.png">
+              <template id="audio-resources"></template>
+            </div>
+          </div>
+        </div>
+      </div>
 
     </div><!-- /content-home -->
 
@@ -285,7 +387,8 @@
                 <h4 class="polaroid-title">ServeX-SideWalk</h4>
                 <span class="polaroid-year">2025</span>
               </div>
-              <p class="polaroid-desc">Full-stack staff dashboard with real-time order tracking and secure demo access for cafe environments.</p>
+              <p class="polaroid-desc">Full-stack staff dashboard with real-time order tracking and secure demo access
+                for cafe environments.</p>
               <div class="pw-tags">
                 <i class="pw-tag devicon-typescript-plain colored" title="TypeScript"></i>
                 <i class="pw-tag devicon-react-original colored" title="React"></i>
@@ -293,8 +396,10 @@
                 <i class="pw-tag devicon-vercel-plain" title="Vercel"></i>
               </div>
               <div style="display: flex; gap: 0.8rem;">
-                <a href="https://github.com/Z35Tyyyy/ServeX-SideWalk" target="_blank" rel="noopener noreferrer" class="polaroid-link">github ↗</a>
-                <a href="https://serve-x-side-walk.vercel.app/" target="_blank" rel="noopener noreferrer" class="polaroid-link">live ↗</a>
+                <a href="https://github.com/Z35Tyyyy/ServeX-SideWalk" target="_blank" rel="noopener noreferrer"
+                  class="polaroid-link">github ↗</a>
+                <a href="https://serve-x-side-walk.vercel.app/" target="_blank" rel="noopener noreferrer"
+                  class="polaroid-link">live ↗</a>
               </div>
             </div>
           </div>
@@ -311,7 +416,8 @@
                 <h4 class="polaroid-title">Argos</h4>
                 <span class="polaroid-year">2026</span>
               </div>
-              <p class="polaroid-desc">High-assurance File Integrity Monitor with cryptographic hash chaining and AI-assisted anomaly detection.</p>
+              <p class="polaroid-desc">High-assurance File Integrity Monitor with cryptographic hash chaining and
+                AI-assisted anomaly detection.</p>
               <div class="pw-tags">
                 <i class="pw-tag devicon-python-plain colored" title="Python"></i>
                 <i class="pw-tag devicon-sqlite-plain colored" title="SQLite"></i>
@@ -319,8 +425,10 @@
                 <i class="pw-tag devicon-github-plain" title="GitHub"></i>
               </div>
               <div style="display: flex; gap: 0.8rem;">
-                <a href="https://github.com/Z35Tyyyy/Argos" target="_blank" rel="noopener noreferrer" class="polaroid-link">github ↗</a>
-                <a href="https://argos.kanishkkkk.xyz/" target="_blank" rel="noopener noreferrer" class="polaroid-link">docs ↗</a>
+                <a href="https://github.com/Z35Tyyyy/Argos" target="_blank" rel="noopener noreferrer"
+                  class="polaroid-link">github ↗</a>
+                <a href="https://argos.kanishkkkk.xyz/" target="_blank" rel="noopener noreferrer"
+                  class="polaroid-link">docs ↗</a>
               </div>
             </div>
           </div>
@@ -337,7 +445,8 @@
                 <h4 class="polaroid-title">Kleos</h4>
                 <span class="polaroid-year">2025</span>
               </div>
-              <p class="polaroid-desc">Neural-driven ATS synthesis platform for elite career architecture and professional narrative optimization.</p>
+              <p class="polaroid-desc">Neural-driven ATS synthesis platform for elite career architecture and
+                professional narrative optimization.</p>
               <div class="pw-tags">
                 <i class="pw-tag devicon-javascript-plain colored" title="JavaScript"></i>
                 <i class="pw-tag devicon-nodejs-plain colored" title="Node.js"></i>
@@ -345,8 +454,10 @@
                 <i class="pw-tag devicon-railway-plain" title="Railway"></i>
               </div>
               <div style="display: flex; gap: 0.8rem;">
-                <a href="https://github.com/Z35Tyyyy/Kleos" target="_blank" rel="noopener noreferrer" class="polaroid-link">github ↗</a>
-                <a href="https://kleos-production.up.railway.app/" target="_blank" rel="noopener noreferrer" class="polaroid-link">live ↗</a>
+                <a href="https://github.com/Z35Tyyyy/Kleos" target="_blank" rel="noopener noreferrer"
+                  class="polaroid-link">github ↗</a>
+                <a href="https://kleos-production.up.railway.app/" target="_blank" rel="noopener noreferrer"
+                  class="polaroid-link">live ↗</a>
               </div>
             </div>
           </div>
@@ -363,7 +474,8 @@
                 <h4 class="polaroid-title">QR Code Generator</h4>
                 <span class="polaroid-year">2025</span>
               </div>
-              <p class="polaroid-desc">Brutalist-styled QR generator with custom dot styles, center logos, and client-side image processing.</p>
+              <p class="polaroid-desc">Brutalist-styled QR generator with custom dot styles, center logos, and
+                client-side image processing.</p>
               <div class="pw-tags">
                 <i class="pw-tag devicon-html5-plain colored" title="HTML5"></i>
                 <i class="pw-tag devicon-css3-plain colored" title="CSS3"></i>
@@ -371,8 +483,10 @@
                 <i class="pw-tag devicon-vercel-plain" title="Vercel"></i>
               </div>
               <div style="display: flex; gap: 0.8rem;">
-                <a href="https://github.com/Z35Tyyyy/QR-Code-Generator" target="_blank" rel="noopener noreferrer" class="polaroid-link">github ↗</a>
-                <a href="https://qr-code-generator-rho-gold.vercel.app/" target="_blank" rel="noopener noreferrer" class="polaroid-link">live ↗</a>
+                <a href="https://github.com/Z35Tyyyy/QR-Code-Generator" target="_blank" rel="noopener noreferrer"
+                  class="polaroid-link">github ↗</a>
+                <a href="https://qr-code-generator-rho-gold.vercel.app/" target="_blank" rel="noopener noreferrer"
+                  class="polaroid-link">live ↗</a>
               </div>
             </div>
           </div>
@@ -389,7 +503,8 @@
                 <h4 class="polaroid-title">PicShrink</h4>
                 <span class="polaroid-year">2024</span>
               </div>
-              <p class="polaroid-desc">Smart image compression tool with drag-and-drop, real-time preview, and high-fidelity output.</p>
+              <p class="polaroid-desc">Smart image compression tool with drag-and-drop, real-time preview, and
+                high-fidelity output.</p>
               <div class="pw-tags">
                 <i class="pw-tag devicon-nextjs-plain" title="Next.js"></i>
                 <i class="pw-tag devicon-typescript-plain colored" title="TypeScript"></i>
@@ -397,8 +512,10 @@
                 <i class="pw-tag devicon-vercel-plain" title="Vercel"></i>
               </div>
               <div style="display: flex; gap: 0.8rem;">
-                <a href="https://github.com/Z35Tyyyy/PicShrink" target="_blank" rel="noopener noreferrer" class="polaroid-link">github ↗</a>
-                <a href="https://picshrink-kanishk-singhs-projects-ecc343ba.vercel.app/" target="_blank" rel="noopener noreferrer" class="polaroid-link">live ↗</a>
+                <a href="https://github.com/Z35Tyyyy/PicShrink" target="_blank" rel="noopener noreferrer"
+                  class="polaroid-link">github ↗</a>
+                <a href="https://picshrink-kanishk-singhs-projects-ecc343ba.vercel.app/" target="_blank"
+                  rel="noopener noreferrer" class="polaroid-link">live ↗</a>
               </div>
             </div>
           </div>
@@ -406,6 +523,89 @@
 
       </div>
     </div><!-- /content-projects -->
+
+    <!-- ========== ABOUT CONTENT ========== -->
+    <div id="content-about" style="display: none;">
+
+      <div class="section-wrapper">
+        <h3 class="section-label"><span class="asterisk">*</span> the long version</h3>
+        <p class="about-prose">
+          I'm Kanishk &mdash; a developer who got into security because breaking things
+          taught me more about building them than any tutorial ever did. Most days
+          I'm bouncing between writing code, reading writeups, training models on
+          questionable datasets, and explaining to people that no, I'm not going
+          to "hack their ex's Instagram."
+        </p>
+        <p class="about-prose">
+          I started out doing CTFs as a way to procrastinate from coursework,
+          which then became coursework, which then became a hobby that pays.
+          Now I help organize them too &mdash; turns out designing puzzles is just
+          as fun as solving them, and only mildly more frustrating.
+        </p>
+      </div>
+
+      <div class="section-wrapper">
+        <h3 class="section-label"><span class="asterisk">*</span> currently</h3>
+        <table class="about-currently">
+          <tr>
+            <th class="width-min">building</th>
+            <td>Argos &mdash; file integrity monitor with AI anomaly detection</td>
+          </tr>
+          <tr>
+            <th>learning</th>
+            <td>Rust, kernel exploitation, malware analysis</td>
+          </tr>
+          <tr>
+            <th>reading</th>
+            <td><cite>The Web Application Hacker's Handbook</cite></td>
+          </tr>
+          <tr>
+            <th>listening</th>
+            <td>Tame Impala, Daft Punk, anything with a bassline</td>
+          </tr>
+          <tr>
+            <th>location</th>
+            <td>Bengaluru, India &middot; GMT+5:30</td>
+          </tr>
+          <tr>
+            <th>status</th>
+            <td><span class="status-dot"></span> open to interesting work</td>
+          </tr>
+        </table>
+      </div>
+
+      <div class="section-wrapper">
+        <h3 class="section-label"><span class="asterisk">*</span> things I care about</h3>
+        <ul class="about-list">
+          <li>Software that respects the user's time, attention, and intelligence.</li>
+          <li>Documentation that doesn't assume you've already read the source.</li>
+          <li>Brutalist design &mdash; function with personality, not function pretending to be art.</li>
+          <li>Open source, but the kind people actually maintain.</li>
+          <li>Teaching what I learn, badly at first, better with practice.</li>
+        </ul>
+      </div>
+
+      <div class="section-wrapper">
+        <h3 class="section-label"><span class="asterisk">*</span> beyond the keyboard</h3>
+        <p class="about-prose">
+          When I'm not staring at a terminal, I'm usually overthinking film cinematography,
+          losing chess games on principle, attempting to cook something more ambitious
+          than my skill level, or convincing myself that <em>this</em> is the year I
+          finally stick with the gym.
+        </p>
+      </div>
+
+      <div class="section-wrapper">
+        <h3 class="section-label"><span class="asterisk">*</span> say hi</h3>
+        <p class="about-prose">
+          Best place to reach me is <a href="mailto:hello@kanishkkkk.xyz">email</a>
+          or any of the platforms in the navbar. I read everything, reply to most
+          things, and occasionally get back to you within the same calendar week.
+        </p>
+      </div>
+
+    </div><!-- /content-about -->
+
   </div>
 
   <!-- React & Babel -->
@@ -741,6 +941,9 @@
   <!-- Bottom Right GIF Placeholder -->
   <img id="bottom-right-gif" src="./cat-small-kawai.gif" alt="Dark mode easter egg" />
 
+  <!-- Three.js (required by Terminal Hero) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/0.160.0/three.min.js"></script>
+
   <!-- Dino Game Engine -->
   <script src="dino.build.js"></script>
 
@@ -764,7 +967,7 @@
         const dot = document.createElement('button');
         dot.className = 'pow-dot' + (i === 0 ? ' active' : '');
         dot.setAttribute('aria-label', 'Go to slide ' + (i + 1));
-        dot.addEventListener('click', function () { goTo(i); });
+        dot.addEventListener('click', function () { goTo(i); resetAutoplay(); });
         dotsContainer.appendChild(dot);
       });
 
@@ -773,47 +976,32 @@
         if (index >= totalSlides) index = 0;
         currentIndex = index;
         track.style.transform = 'translateX(-' + (currentIndex * 100) + '%)';
-
-        // Update dots
-        var dots = dotsContainer.querySelectorAll('.pow-dot');
+        const dots = dotsContainer.querySelectorAll('.pow-dot');
         dots.forEach(function (d, i) {
-          if (i === currentIndex) {
-            d.classList.add('active');
-          } else {
-            d.classList.remove('active');
-          }
+          d.classList.toggle('active', i === currentIndex);
         });
       }
 
-      prevBtn.addEventListener('click', function () {
-        goTo(currentIndex - 1);
-        resetAutoplay();
-      });
-      nextBtn.addEventListener('click', function () {
-        goTo(currentIndex + 1);
-        resetAutoplay();
-      });
+      prevBtn.addEventListener('click', function () { goTo(currentIndex - 1); resetAutoplay(); });
+      nextBtn.addEventListener('click', function () { goTo(currentIndex + 1); resetAutoplay(); });
 
-      // Autoplay
       function startAutoplay() {
         stopAutoplay();
-        autoplayTimer = setInterval(function () {
-          goTo(currentIndex + 1);
-        }, AUTOPLAY_DELAY);
+        autoplayTimer = setInterval(function () { goTo(currentIndex + 1); }, AUTOPLAY_DELAY);
       }
       function stopAutoplay() {
-        if (autoplayTimer) {
-          clearInterval(autoplayTimer);
-          autoplayTimer = null;
-        }
+        if (autoplayTimer) { clearInterval(autoplayTimer); autoplayTimer = null; }
       }
-      function resetAutoplay() {
-        stopAutoplay();
-        startAutoplay();
-      }
+      function resetAutoplay() { stopAutoplay(); startAutoplay(); }
 
       carousel.addEventListener('mouseenter', stopAutoplay);
       carousel.addEventListener('mouseleave', startAutoplay);
+
+      // Pause when tab is hidden — saves CPU
+      document.addEventListener('visibilitychange', function () {
+        if (document.hidden) stopAutoplay();
+        else if (window.__currentPage === 'home') startAutoplay();
+      });
 
       // Keyboard navigation
       carousel.setAttribute('tabindex', '0');
@@ -822,73 +1010,521 @@
         if (e.key === 'ArrowRight') { goTo(currentIndex + 1); resetAutoplay(); }
       });
 
-      // "More" link smooth scroll to projects
       if (moreLink) {
         moreLink.addEventListener('click', function (e) {
-          var target = document.getElementById('projects');
-          if (target) {
-            e.preventDefault();
-            target.scrollIntoView({ behavior: 'smooth' });
-          }
-          // If no #projects element exists, the default anchor behavior navigates naturally
+          e.preventDefault();
+          var navProjects = document.querySelector('.top-navbar a[data-page="projects"]');
+          if (navProjects) navProjects.click();
         });
       }
 
+      // Expose so the page swapper can pause/resume
+      window.__powCarousel = { start: startAutoplay, stop: stopAutoplay };
       startAutoplay();
     })();
   </script>
+
   <!-- Header + Content Swap Script -->
   <script>
     (function () {
       var navLinks = document.querySelectorAll('.top-navbar a[data-page]');
-      var headerHome = document.getElementById('header-home');
-      var headerProjects = document.getElementById('header-projects');
-      var headerAbout = document.getElementById('header-about');
-
-      var contentHome = document.getElementById('content-home');
-      var contentProjects = document.getElementById('content-projects');
-
       var headers = {
-        home: headerHome,
-        projects: headerProjects,
-        about: headerAbout
+        home: document.getElementById('header-home'),
+        projects: document.getElementById('header-projects'),
+        about: document.getElementById('header-about')
+      };
+      var contents = {
+        home: document.getElementById('content-home'),
+        projects: document.getElementById('content-projects'),
+        about: document.getElementById('content-about')
       };
 
-      var contents = {
-        home: contentHome,
-        projects: contentProjects
-      };
+      window.__currentPage = 'home';
+
+      function setActivePage(page) {
+        if (!headers[page] || !contents[page]) page = 'home';
+
+        Object.keys(headers).forEach(function (key) {
+          if (headers[key]) {
+            headers[key].style.display = 'none';
+            headers[key].classList.remove('header-animate');
+          }
+          if (contents[key]) contents[key].style.display = 'none';
+        });
+
+        headers[page].style.display = '';
+        void headers[page].offsetWidth;
+        headers[page].classList.add('header-animate');
+        contents[page].style.display = '';
+
+        navLinks.forEach(function (link) {
+          link.classList.toggle('active', link.getAttribute('data-page') === page);
+        });
+
+        // Re-trigger polaroid entrance animation when revisiting Projects
+        if (page === 'projects') {
+          var cards = contents.projects.querySelectorAll('.polaroid-card');
+          cards.forEach(function (c) {
+            c.style.animation = 'none';
+            void c.offsetWidth;
+            c.style.animation = '';
+          });
+        }
+
+        // Pause carousel autoplay when off the home page
+        window.__currentPage = page;
+        if (window.__powCarousel) {
+          if (page === 'home') window.__powCarousel.start();
+          else window.__powCarousel.stop();
+        }
+
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
 
       navLinks.forEach(function (link) {
-        link.addEventListener('click', function () {
-          var page = this.getAttribute('data-page');
-          var targetHeader = headers[page] || headerHome;
-          var targetContent = contents[page] || contentHome;
-
-          // Hide all headers
-          Object.keys(headers).forEach(function (key) {
-            if (headers[key]) {
-              headers[key].style.display = 'none';
-              headers[key].classList.remove('header-animate');
-            }
-          });
-
-          // Hide all content sections
-          Object.keys(contents).forEach(function (key) {
-            if (contents[key]) {
-              contents[key].style.display = 'none';
-            }
-          });
-
-          // Show and animate the target header
-          targetHeader.style.display = '';
-          void targetHeader.offsetWidth;
-          targetHeader.classList.add('header-animate');
-
-          // Show the target content
-          targetContent.style.display = '';
+        var page = link.getAttribute('data-page');
+        if (!page || !headers[page]) return;
+        link.addEventListener('click', function (e) {
+          e.preventDefault();
+          setActivePage(page);
         });
       });
+    })();
+  </script>
+
+  <!-- 3D Terminal Hero -->
+  <script>
+    (function () {
+      var canvas = document.getElementById('hero-3d-canvas');
+      if (!canvas || typeof THREE === 'undefined') {
+        console.warn('[hero-3d] missing canvas or THREE');
+        return;
+      }
+
+      var container = canvas.parentElement;
+      var termFrame = document.getElementById('term-frame');
+      var termBody = document.getElementById('term-body');
+      var termInput = document.getElementById('term-input');
+      var termTyped = document.getElementById('term-typed');
+
+      // ---------- Three.js background ----------
+      function getColors() {
+        var s = getComputedStyle(document.documentElement);
+        return {
+          grid: (s.getPropertyValue('--text-color-alt') || '#888').trim(),
+          gridHot: (s.getPropertyValue('--accent-color') || '#ff6b6b').trim(),
+          particle: (s.getPropertyValue('--text-color') || '#fff').trim()
+        };
+      }
+      var colors = getColors();
+
+      var scene = new THREE.Scene();
+      var camera = new THREE.PerspectiveCamera(70, 1, 0.1, 100);
+      camera.position.set(0, 1.4, 4);
+      camera.lookAt(0, 0, -2);
+
+      var renderer = new THREE.WebGLRenderer({ canvas: canvas, antialias: true, alpha: true });
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+
+      var grid;
+      function buildGrid() {
+        if (grid) {
+          scene.remove(grid);
+          grid.geometry.dispose();
+          grid.material.dispose();
+        }
+        grid = new THREE.GridHelper(40, 40,
+          new THREE.Color(colors.gridHot),
+          new THREE.Color(colors.grid)
+        );
+        grid.position.y = -1.2;
+        grid.material.transparent = true;
+        grid.material.opacity = 0.4;
+        scene.add(grid);
+      }
+      buildGrid();
+
+      var PCOUNT = 140;
+      var positions = new Float32Array(PCOUNT * 3);
+      for (var i = 0; i < PCOUNT; i++) {
+        positions[i * 3] = (Math.random() - 0.5) * 30;
+        positions[i * 3 + 1] = Math.random() * 5;
+        positions[i * 3 + 2] = -Math.random() * 25;
+      }
+      var pGeo = new THREE.BufferGeometry();
+      pGeo.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+      var pMat = new THREE.PointsMaterial({
+        color: new THREE.Color(colors.particle),
+        size: 0.04, transparent: true, opacity: 0.45
+      });
+      var particles = new THREE.Points(pGeo, pMat);
+      scene.add(particles);
+
+      var tx = 0, ty = 0, cx = 0, cy = 0;
+      container.addEventListener('mousemove', function (e) {
+        var r = container.getBoundingClientRect();
+        tx = ((e.clientX - r.left) / r.width - 0.5) * 2;
+        ty = ((e.clientY - r.top) / r.height - 0.5) * 2;
+      });
+      container.addEventListener('mouseleave', function () { tx = 0; ty = 0; });
+
+      new MutationObserver(function () {
+        colors = getColors();
+        buildGrid();
+        pMat.color.set(colors.particle);
+      }).observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
+
+      function resize() {
+        var w = container.clientWidth, h = container.clientHeight;
+        if (!w || !h) return;
+        camera.aspect = w / h;
+        camera.updateProjectionMatrix();
+        renderer.setSize(w, h, false);
+      }
+      new ResizeObserver(resize).observe(container);
+      resize();
+
+      var running = true;
+      document.addEventListener('visibilitychange', function () { running = !document.hidden; });
+
+      var clock = new THREE.Clock();
+      (function animate() {
+        requestAnimationFrame(animate);
+        if (!running) return;
+        var t = clock.getElapsedTime();
+        cx += (tx - cx) * 0.04;
+        cy += (ty - cy) * 0.04;
+
+        grid.position.z = (t * 1.4) % 1;
+        camera.position.x = cx * 0.4;
+        camera.position.y = 1.4 + cy * 0.2;
+        camera.lookAt(0, 0, -2);
+        particles.rotation.y = t * 0.02;
+
+        renderer.render(scene, camera);
+      })();
+
+      // ---------- Terminal ----------
+      function escapeHTML(s) {
+        return String(s).replace(/[&<>"']/g, function (c) {
+          return ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c];
+        });
+      }
+      function syncTyped() { termTyped.textContent = termInput.value; }
+      termInput.addEventListener('input', syncTyped);
+      termFrame.addEventListener('click', function (e) {
+        if (e.target.tagName !== 'A') termInput.focus();
+      });
+
+      function printLine(text, cls) {
+        var div = document.createElement('div');
+        div.className = 'term-line' + (cls ? ' ' + cls : '');
+        div.textContent = text;
+        termBody.appendChild(div);
+        termBody.scrollTop = termBody.scrollHeight;
+      }
+      function printHTML(html, cls) {
+        var div = document.createElement('div');
+        div.className = 'term-line' + (cls ? ' ' + cls : '');
+        div.innerHTML = html;
+        termBody.appendChild(div);
+        termBody.scrollTop = termBody.scrollHeight;
+      }
+      function echoPrompt(cmd) {
+        printHTML(
+          '<span class="term-prompt">zesty@portfolio<span class="term-prompt-sep">:</span>' +
+          '<span class="term-prompt-path">~</span><span class="term-prompt-sep">$</span></span> ' +
+          '<span class="term-typed">' + escapeHTML(cmd) + '</span>'
+        );
+      }
+
+      // ====== GitHub repos config ======
+      // Edit to pull from different account(s). Lists are merged + deduped by repo name.
+      var GH_USERS = ['Z35Tyyyy'];
+
+      // Featured repos appear first in this exact order. Names must match the GitHub
+      // repo names exactly (case-sensitive — check the URL on github.com).
+      var FEATURED = ['ServeX-SideWalk', 'Argos', 'Kleos', 'QR-Code-Generator', 'PicShrink'];
+
+      var repoCache = null;
+      var fetchingRepos = false;
+
+      function fetchAllRepos() {
+        var promises = GH_USERS.map(function (user) {
+          return fetch('https://api.github.com/users/' + user + '/repos?sort=updated&per_page=100&type=owner')
+            .then(function (res) {
+              if (!res.ok) {
+                if (res.status === 403) throw new Error('rate limited by github (60 req/hour unauth)');
+                throw new Error(user + ': HTTP ' + res.status);
+              }
+              return res.json();
+            })
+            .then(function (list) {
+              return list.filter(function (r) { return !r.fork; });
+            })
+            .catch(function (e) {
+              printLine('warn: ' + e.message, 'term-err');
+              return [];
+            });
+        });
+        return Promise.all(promises).then(function (lists) {
+          var all = [].concat.apply([], lists);
+          var seen = {};
+          var deduped = [];
+          all.forEach(function (r) {
+            var key = r.name.toLowerCase();
+            if (!seen[key]) { seen[key] = true; deduped.push(r); }
+          });
+          // Default sort = most recently updated. FEATURED reordering happens in renderRepos.
+          deduped.sort(function (a, b) {
+            return new Date(b.updated_at) - new Date(a.updated_at);
+          });
+          return deduped;
+        });
+      }
+
+      function renderRepos(repos) {
+        if (!repos.length) {
+          printLine('no public repos found', 'term-muted');
+          return;
+        }
+        var nameWidth = Math.min(28, repos.reduce(function (a, r) {
+          return Math.max(a, r.name.length);
+        }, 8));
+
+        // Split: featured (in FEATURED order) first, then everything else (already
+        // sorted by most-recently-updated in fetchAllRepos).
+        var byName = {};
+        repos.forEach(function (r) { byName[r.name] = r; });
+        var featured = [];
+        FEATURED.forEach(function (n) {
+          if (byName[n]) { featured.push(byName[n]); }
+        });
+        var others = repos.filter(function (r) {
+          return FEATURED.indexOf(r.name) === -1;
+        });
+
+        function printOne(r) {
+          var name = r.name;
+          if (name.length > nameWidth) name = name.slice(0, nameWidth - 1) + '…';
+          var pad = '';
+          for (var i = name.length; i < nameWidth + 2; i++) pad += ' ';
+          var lang = r.language ? '[' + r.language + ']' : '';
+          var stars = r.stargazers_count ? ' ★' + r.stargazers_count : '';
+          var desc = r.description ? ' — ' + r.description : '';
+          printHTML(
+            '<a class="term-link" href="' + r.html_url + '" target="_blank" rel="noopener">' +
+            '<span class="term-accent">' + escapeHTML(name) + '</span></a>' +
+            '<span style="white-space:pre">' + escapeHTML(pad) + '</span>' +
+            '<span class="term-muted">' + escapeHTML(lang + stars + desc) + '</span>'
+          );
+        }
+
+        featured.forEach(printOne);
+        if (featured.length && others.length) {
+          printLine('— — — — — — — — — — — — — — — — — — — —', 'term-muted');
+        }
+        others.forEach(printOne);
+
+        printLine('');
+        printLine(repos.length + ' repos (' + featured.length + ' featured). click a name to open on github.', 'term-muted');
+      }
+
+      function lsProjects() {
+        if (repoCache) { renderRepos(repoCache); return; }
+        if (fetchingRepos) { printLine('still fetching... give it a sec', 'term-muted'); return; }
+        fetchingRepos = true;
+        printLine('fetching from github...', 'term-muted');
+        fetchAllRepos()
+          .then(function (repos) {
+            repoCache = repos;
+            renderRepos(repos);
+          })
+          .catch(function (e) {
+            printLine('error: ' + e.message, 'term-err');
+          })
+          .finally(function () {
+            fetchingRepos = false;
+          });
+      }
+
+      var COMMANDS = {
+        help: function () {
+          printLine('available commands:', 'term-muted');
+          var cmds = [
+            ['help', 'show this list'],
+            ['whoami', 'who is this guy'],
+            ['ls', 'list directories'],
+            ['ls projects', 'list all github repos (live)'],
+            ['repos', 'alias for `ls projects`'],
+            ['cat about', 'read about.md'],
+            ['cat skills', 'list tech stack'],
+            ['social', 'social links'],
+            ['goto <page>', 'navigate: home | projects | about'],
+            ['theme', 'toggle light/dark'],
+            ['clear', 'clear terminal  (ctrl+l)']
+          ];
+          var pad = 0;
+          cmds.forEach(function (c) { if (c[0].length > pad) pad = c[0].length; });
+          pad += 2;
+          cmds.forEach(function (c) {
+            printHTML('<span class="term-cmd">' + escapeHTML(c[0].padEnd(pad)) + '</span><span class="term-muted">' + escapeHTML(c[1]) + '</span>');
+          });
+        },
+        whoami: function () {
+          printLine('Kanishk Singh / aka zestypesky');
+          printLine('aspiring red teamer, ai solutions engineer,ctf creator, occasional blogger', 'term-muted');
+        },
+        ls: function (args) {
+          if (args[0] === 'projects' || args[0] === 'repos') {
+            lsProjects();
+          } else {
+            ['projects/', 'about.md', 'skills', 'social', 'blog -> wickstrom.tech'].forEach(function (item) {
+              printHTML('<span class="term-accent">' + escapeHTML(item) + '</span>');
+            });
+          }
+        },
+        repos: function () { lsProjects(); },
+        cat: function (args) {
+          var t = (args[0] || '').replace(/\.md$/, '').toLowerCase();
+          if (t === 'about') {
+            printLine('i like taking things apart more than putting them together,');
+            printLine('which is probably why i ended up somewhere between security');
+            printLine('and ai. most of my time goes into writing code, breaking it,');
+            printLine('teaching machines to do it better, and then organizing ctfs');
+            printLine('so other people can suffer too.');
+          } else if (t === 'skills') {
+            [
+              'languages : c, c++, python, javascript, typescript',
+              'frontend  : react, next.js, vue, tailwind',
+              'backend   : node, express, fastapi',
+              'infra     : aws, gcp, docker, nginx, cloudflare',
+              'data/ai   : numpy, pandas, pytorch, tensorflow'
+            ].forEach(function (l) { printLine(l, 'term-muted'); });
+          } else if (!t) {
+            printLine('cat: missing operand', 'term-err');
+          } else {
+            printLine('cat: ' + t + ': no such file or directory', 'term-err');
+          }
+        },
+        skills: function () { COMMANDS.cat(['skills']); },
+        social: function () {
+          var links = [
+            ['github   ', 'https://github.com/EzHavoc'],
+            ['tryhackme', 'https://tryhackme.com/p/ZestyPesky'],
+            ['linkedin ', 'https://www.linkedin.com/in/kanishk-singh-a097a2117/'],
+            ['twitter/x', 'https://x.com/singhkanishk778'],
+            ['instagram', 'https://www.instagram.com/_kan.i.shk_/']
+          ];
+          links.forEach(function (pair) {
+            printHTML('<span class="term-accent">' + pair[0] + '</span>  <a class="term-link" href="' + pair[1] + '" target="_blank" rel="noopener">' + pair[1] + '</a>');
+          });
+        },
+        goto: function (args) {
+          var page = (args[0] || '').toLowerCase();
+          var valid = ['home', 'projects', 'about'];
+          if (valid.indexOf(page) === -1) {
+            printLine('goto: unknown page "' + (page || '<empty>') + '". try: ' + valid.join(' | '), 'term-err');
+            return;
+          }
+          var link = document.querySelector('.top-navbar a[data-page="' + page + '"]');
+          if (link) {
+            printLine('-> ' + page, 'term-muted');
+            setTimeout(function () { link.click(); }, 180);
+          }
+        },
+        open: function (args) { COMMANDS.goto(args); },
+        theme: function () {
+          var btn = document.getElementById('theme-toggle');
+          if (btn) {
+            btn.click();
+            printLine('theme: ' + document.documentElement.getAttribute('data-theme'), 'term-muted');
+          }
+        },
+        clear: function () { termBody.innerHTML = ''; },
+        date: function () { printLine(new Date().toString()); },
+        sudo: function () { printLine('sudo: permission denied. nice try.', 'term-err'); },
+        exit: function () { printLine('there is no escape.', 'term-muted'); },
+        quit: function () { COMMANDS.exit(); },
+        pwd: function () { printLine('/home/zestypesky'); },
+        uname: function () { printLine('Linux portfolio 6.8.0-zesty #1 SMP x86_64 GNU/Linux', 'term-muted'); },
+        hack: function () {
+          printLine('initiating mainframe breach...', 'term-accent');
+          ['[+] bypassing firewall',
+            '[+] cracking RSA-2048 (instantly, because tv hacker)',
+            '[+] downloading the internet',
+            '[!] just kidding. go read a CVE.'
+          ].forEach(function (l, i) { setTimeout(function () { printLine(l, 'term-muted'); }, 250 + i * 320); });
+        }
+      };
+      var ALIASES = {
+        'rm -rf /': function () { printLine('nope.', 'term-err'); },
+        'ls -la': function () { COMMANDS.ls([]); }
+      };
+
+      function run(raw) {
+        var cmd = raw.trim();
+        if (!cmd) return;
+        echoPrompt(cmd);
+        if (ALIASES[cmd]) { ALIASES[cmd](); return; }
+        var parts = cmd.split(/\s+/);
+        var name = parts[0];
+        var args = parts.slice(1);
+        var fn = COMMANDS[name.toLowerCase()];
+        if (fn) fn(args);
+        else printLine('command not found: ' + name + '. try `help`', 'term-err');
+      }
+
+      var history = [];
+      var hIdx = -1;
+
+      termInput.addEventListener('keydown', function (e) {
+        // Prevent global listeners (dino game's spacebar handler, etc.) from
+        // hijacking keys typed into the terminal. Without this, pressing space
+        // bubbles up to document and steals focus away from this input.
+        e.stopPropagation();
+        if (e.key === 'Enter') {
+          var v = termInput.value;
+          if (v.trim()) {
+            history.push(v);
+            if (history.length > 50) history.shift();
+          }
+          hIdx = history.length;
+          run(v);
+          termInput.value = '';
+          syncTyped();
+        } else if (e.key === 'ArrowUp') {
+          e.preventDefault();
+          if (!history.length) return;
+          hIdx = Math.max(0, hIdx - 1);
+          termInput.value = history[hIdx] || '';
+          syncTyped();
+          setTimeout(function () { termInput.setSelectionRange(termInput.value.length, termInput.value.length); }, 0);
+        } else if (e.key === 'ArrowDown') {
+          e.preventDefault();
+          if (!history.length) return;
+          hIdx = Math.min(history.length, hIdx + 1);
+          termInput.value = history[hIdx] || '';
+          syncTyped();
+        } else if (e.key === 'Tab') {
+          e.preventDefault();
+          var partial = termInput.value.toLowerCase();
+          var pool = Object.keys(COMMANDS).concat(['ls projects', 'cat about', 'cat skills', 'goto home', 'goto projects', 'goto about']);
+          for (var i = 0; i < pool.length; i++) {
+            if (pool[i].indexOf(partial) === 0) {
+              termInput.value = pool[i];
+              syncTyped();
+              break;
+            }
+          }
+        } else if (e.key === 'l' && e.ctrlKey) {
+          e.preventDefault();
+          COMMANDS.clear();
+        }
+      });
+
+      printLine('zesty.sh v1.0', 'term-muted');
+      printHTML('type <span class="term-cmd">help</span>, <span class="term-cmd">whoami</span>, or <span class="term-cmd">ls</span> to get started', 'term-muted');
     })();
   </script>
 
