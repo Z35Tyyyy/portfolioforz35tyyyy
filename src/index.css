@@ -1033,7 +1033,7 @@ a:hover {
 
 .work-subtitle {
   font-size: 0.85rem;
-  color: var(--text-color-alt);
+  color: var(--accent-color);
   margin: 0;
 }
 
@@ -1058,6 +1058,85 @@ a:hover {
   font-size: 0.85rem;
   color: var(--text-color-alt);
   margin-bottom: 0.5rem;
+}
+
+.work-desc {
+  margin: 0;
+  padding-left: 2ch;
+  list-style: square;
+}
+
+.work-desc li {
+  font-size: 0.85rem;
+  line-height: 1.55;
+  color: var(--text-color-alt);
+}
+
+.work-desc li::marker {
+  color: var(--accent-color);
+}
+
+.work-desc li+li {
+  margin-top: 0.5rem;
+}
+
+.work-desc strong {
+  color: var(--text-color);
+  font-weight: var(--font-weight-bold);
+}
+
+/* "Highlights" / "Technologies" block label */
+.work-desc-title {
+  font-size: 0.85rem;
+  color: var(--text-color-alt);
+  margin-bottom: 0.5rem;
+}
+
+/* Company website link beside the title (matches .social-icon treatment) */
+.work-site {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0.55;
+  transition: opacity 0.2s, color 0.2s, transform 0.2s;
+  vertical-align: middle;
+}
+
+.work-site svg {
+  width: 15px;
+  height: 15px;
+  margin: 0;
+}
+
+.work-site:hover {
+  opacity: 1;
+  color: var(--accent-color);
+  transform: scale(1.15);
+}
+
+/* Only the flex gap should space work-card blocks — cancel the global "*+*" */
+.work-card>*+* {
+  margin-top: 0;
+}
+
+/* Technology tags: icon + label pills (icons via the CDN the site already uses) */
+.work-tech .pw-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.work-tech .pw-tag-icon {
+  width: 14px;
+  height: 14px;
+  margin: 0;
+  display: block;
+  flex: none;
+}
+
+/* Cancel the global "*+*" between tags so they keep a uniform height */
+.work-tech .pw-tags>*+* {
+  margin-top: 0;
 }
 
 
