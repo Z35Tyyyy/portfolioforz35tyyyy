@@ -247,6 +247,13 @@ th {
   flex: 1;
 }
 
+/* The About header carries the full intro with inline links; flow it as a
+   normal text block so the shared flex layout doesn't split the inline
+   content (text + links) into separate columns. */
+#header-about .page-header-desc {
+  display: block;
+}
+
 /* Header swap animation */
 @keyframes headerFadeIn {
   from {
@@ -1695,6 +1702,53 @@ html[data-theme='light'] #bottom-right-gif {
 
 .about-list li::marker {
   color: var(--accent-color);
+}
+
+/* About photo segments — a uniform-height photo strip above the prose */
+.about-strip {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: 0.9rem;
+  margin-bottom: 1.3rem;
+}
+
+.about-photo {
+  margin: 0;
+  max-width: 100%;
+}
+
+.about-photo img {
+  height: 210px;
+  width: auto;
+  max-width: 100%;
+  display: block;
+  border: 1px solid var(--divider-color);
+  border-radius: 6px;
+  background: var(--background-color-alt);
+}
+
+.about-photo figcaption {
+  margin-top: 0.45rem;
+  font-size: 0.72rem;
+  line-height: 1.45;
+  color: var(--text-color-alt);
+  max-width: 26ch;
+}
+
+@media (max-width: 640px) {
+  .about-photo {
+    flex: 1 1 100%;
+  }
+
+  .about-photo img {
+    height: auto;
+    width: 100%;
+  }
+
+  .about-photo figcaption {
+    max-width: none;
+  }
 }
 
 /* ====== 3D Terminal Hero ====== */
