@@ -1559,6 +1559,9 @@ html[data-theme='light'] #bottom-right-gif {
 }
 
 .dino-game-wrapper .dino-canvas {
+  /* inline canvas sits on the text baseline — the descender gap can make
+     the overflow-hidden container clip the bottom of the render */
+  display: block;
   max-width: 100%;
   opacity: 1;
   overflow: hidden;
