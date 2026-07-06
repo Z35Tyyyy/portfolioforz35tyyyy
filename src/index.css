@@ -477,12 +477,25 @@ button:active {
     padding: 0 1ch var(--line-height);
   }
 
+  .header tbody,
+  .header tr,
   .header td,
   .header th,
   .header tr td:last-child {
     display: block;
     width: 100%;
     text-align: left;
+  }
+
+  /* center the name block and social icons on phones */
+  .header .title,
+  .header .subtitle {
+    display: block;
+    text-align: center;
+  }
+
+  .header .social-links {
+    justify-content: center;
   }
 
   .top-navbar {
@@ -515,6 +528,8 @@ button:active {
 
 @media screen and (max-width: 480px) {
   table,
+  tbody,
+  tr,
   th,
   td {
     width: 100% !important;
@@ -1397,14 +1412,12 @@ a:hover {
 }
 
 
-/* Dark Mode GIF Easter Egg */
+/* Dark Mode GIF Easter Egg — sits right of the theme toggle in the navbar */
 #bottom-right-gif {
-  position: fixed;
-  bottom: 2rem;
-  right: 2rem;
-  max-width: 200px;
+  height: 1.8rem;
+  width: auto;
+  margin: 0;
   pointer-events: none;
-  z-index: 50;
   opacity: 0.8;
   mix-blend-mode: screen;
 }
