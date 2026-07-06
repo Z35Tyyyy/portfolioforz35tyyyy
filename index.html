@@ -28,7 +28,7 @@
     <a href="#home" data-page="home" data-quip="back to base">home</a>
     <a href="#projects" data-page="projects" data-quip="works in progress">projects</a>
     <a href="#about" data-page="about" data-quip="the lore dump">about</a>
-    <a href="https://wickstrom.tech" target="_blank" data-quip="unhinged thoughts">blog ↗</a>
+    <a href="#blog" data-page="blog" data-quip="unhinged thoughts">blog</a>
     <button class="theme-toggle" id="theme-toggle" aria-label="Toggle light/dark theme">☀</button>
   </nav>
 
@@ -115,7 +115,7 @@
       </tr>
       <tr>
         <th class="width-min">B10GS</th>
-        <td class="width-auto"><a href="https://wickstrom.tech"><cite>Zesty Writes</cite></a></td>
+        <td class="width-auto"><a href="#blog" id="home-blog-link"><cite>Zesty Writes</cite></a></td>
       </tr>
     </table>
 
@@ -150,6 +150,20 @@
           workshops for people as clueless as me. I love talking about things I know
           absolutely nothing about, and trying to be a little better at them, one day
           at a time. XD
+        </div>
+      </div>
+    </div>
+
+    <!-- Blog Page Header (hidden by default) -->
+    <div class="header header-page" id="header-blog" style="display: none;">
+      <div class="page-header-inner">
+        <div class="page-header-title">
+          <h1 class="title">Blog</h1>
+        </div>
+        <div class="page-header-desc">
+          Unhinged thoughts, CTF writeups, and things I learned the hard way &mdash;
+          documented here so I only have to learn them twice. Updated whenever
+          the guilt wins.
         </div>
       </div>
     </div>
@@ -654,6 +668,31 @@
 
     </div><!-- /content-about -->
 
+    <!-- ========== BLOG CONTENT ========== -->
+    <div id="content-blog" style="display: none;">
+
+      <!-- Post list view -->
+      <div id="blog-list-view">
+        <div class="section-wrapper">
+          <h3 class="section-label"><span class="asterisk">*</span> posts</h3>
+          <ul class="blog-posts" id="blog-posts"></ul>
+          <p class="blog-status" id="blog-status">loading posts&hellip;</p>
+        </div>
+      </div>
+
+      <!-- Single article view -->
+      <div id="blog-article-view" style="display: none;">
+        <div class="section-wrapper">
+          <a href="#blog" class="blog-back" id="blog-back">&larr; all posts</a>
+          <h1 class="blog-title" id="blog-title"></h1>
+          <p class="blog-byline" id="blog-byline"></p>
+          <hr>
+          <article class="blog-body" id="blog-body"></article>
+        </div>
+      </div>
+
+    </div><!-- /content-blog -->
+
   </div>
 
   <!-- React & Babel -->
@@ -1079,12 +1118,14 @@
       var headers = {
         home: document.getElementById('header-home'),
         projects: document.getElementById('header-projects'),
-        about: document.getElementById('header-about')
+        about: document.getElementById('header-about'),
+        blog: document.getElementById('header-blog')
       };
       var contents = {
         home: document.getElementById('content-home'),
         projects: document.getElementById('content-projects'),
-        about: document.getElementById('content-about')
+        about: document.getElementById('content-about'),
+        blog: document.getElementById('content-blog')
       };
 
       window.__currentPage = 'home';
@@ -1126,6 +1167,11 @@
           else window.__powCarousel.stop();
         }
 
+        // leaving the blog page invalidates any #blog deep-link hash
+        if (page !== 'blog' && location.hash.indexOf('#blog') === 0) {
+          history.replaceState(null, '', location.pathname + location.search);
+        }
+
         window.scrollTo({ top: 0, behavior: 'smooth' });
       }
 
@@ -1137,6 +1183,201 @@
           setActivePage(page);
         });
       });
+
+      // Expose for the blog module (deep links like #blog/<slug>)
+      window.__setActivePage = setActivePage;
+    })();
+  </script>
+
+  <!-- Blog: markdown renderer + sanitizer -->
+  <script src="https://cdn.jsdelivr.net/npm/marked@12/marked.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/dompurify@3/dist/purify.min.js"></script>
+
+  <!-- Blog module: fetches posts from the blog_blob repo and renders them -->
+  <script>
+    (function () {
+      var RAW = 'https://raw.githubusercontent.com/Z35Tyyyy/blog_blob/main/content/';
+
+      var listView = document.getElementById('blog-list-view');
+      var articleView = document.getElementById('blog-article-view');
+      var postsEl = document.getElementById('blog-posts');
+      var statusEl = document.getElementById('blog-status');
+      var titleEl = document.getElementById('blog-title');
+      var bylineEl = document.getElementById('blog-byline');
+      var bodyEl = document.getElementById('blog-body');
+      if (!listView || !articleView) return;
+
+      var postsCache = null;   // array from posts.json
+      var loaded = false;
+      var currentSlug = null;  // guards against slow fetches racing a newer view
+
+      function fmtDate(iso) {
+        var d = new Date(iso + 'T00:00:00');
+        if (isNaN(d)) return iso;
+        var months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+        return months[d.getMonth()] + ' ' + d.getDate() + ', ' + d.getFullYear();
+      }
+
+      function safeDecode(s) {
+        try { return decodeURIComponent(s); } catch (e) { return ''; }
+      }
+
+      function showList(fromHistory) {
+        currentSlug = null;
+        articleView.style.display = 'none';
+        listView.style.display = '';
+        if (!fromHistory && window.__currentPage === 'blog') {
+          history.replaceState(null, '', '#blog');
+        }
+      }
+
+      function renderList(posts) {
+        postsEl.innerHTML = '';
+        if (!posts.length) {
+          statusEl.textContent = 'no posts yet. the guilt hasn’t won.';
+          return;
+        }
+        statusEl.style.display = 'none';
+        posts.forEach(function (p) {
+          var li = document.createElement('li');
+          var a = document.createElement('a');
+          a.className = 'blog-post-link';
+          a.href = '#blog/' + encodeURIComponent(p.slug);
+          var t = document.createElement('span');
+          t.className = 'blog-post-title';
+          t.textContent = p.title;
+          var d = document.createElement('time');
+          d.className = 'blog-post-date';
+          d.setAttribute('datetime', p.date);
+          d.textContent = fmtDate(p.date);
+          a.appendChild(t);
+          a.appendChild(d);
+          a.addEventListener('click', function (e) {
+            e.preventDefault();
+            openPost(p.slug);
+          });
+          li.appendChild(a);
+          postsEl.appendChild(li);
+        });
+      }
+
+      function loadPosts() {
+        if (loaded) return Promise.resolve(postsCache);
+        return fetch(RAW + 'posts.json', { cache: 'no-store' })
+          .then(function (r) {
+            if (!r.ok) throw new Error('HTTP ' + r.status);
+            return r.json();
+          })
+          .then(function (posts) {
+            posts.sort(function (a, b) { return a.date < b.date ? 1 : -1; });
+            postsCache = posts;
+            loaded = true;
+            renderList(posts);
+            return posts;
+          })
+          .catch(function () {
+            statusEl.textContent = 'couldn’t load posts. the blog machine is unplugged — try again later.';
+            return null;
+          });
+      }
+
+      function renderMarkdown(md) {
+        // strip frontmatter
+        md = md.replace(/^---\r?\n[\s\S]*?\r?\n---\r?\n/, '');
+        if (!window.marked || !window.DOMPurify) {
+          bodyEl.textContent = md;
+          return;
+        }
+        var html = window.marked.parse(md);
+        // defense in depth: post HTML must not restyle or clobber the page
+        bodyEl.innerHTML = window.DOMPurify.sanitize(html, {
+          FORBID_TAGS: ['style', 'form', 'input', 'button', 'select', 'textarea'],
+          FORBID_ATTR: ['id', 'name']
+        });
+        // external links open in a new tab
+        bodyEl.querySelectorAll('a[href^="http"]').forEach(function (a) {
+          a.setAttribute('target', '_blank');
+          a.setAttribute('rel', 'noopener noreferrer');
+        });
+      }
+
+      function openPost(slug, fromHistory) {
+        currentSlug = slug;
+        loadPosts().then(function (posts) {
+          if (!posts || currentSlug !== slug) return;
+          var meta = null;
+          for (var i = 0; i < posts.length; i++) {
+            if (posts[i].slug === slug) { meta = posts[i]; break; }
+          }
+          if (!meta) { showList(); return; }
+
+          titleEl.textContent = meta.title;
+          var byline = 'Kanishk Singh · ' + fmtDate(meta.date);
+          if (meta.readingTime) byline += ' · ' + meta.readingTime + ' min read';
+          bylineEl.textContent = byline;
+          bodyEl.innerHTML = '<p class="blog-status">loading…</p>';
+
+          listView.style.display = 'none';
+          articleView.style.display = '';
+          // push a history entry so the Back button returns to the list
+          if (!fromHistory) history.pushState(null, '', '#blog/' + encodeURIComponent(slug));
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+
+          fetch(RAW + 'posts/' + encodeURIComponent(slug) + '.md', { cache: 'no-store' })
+            .then(function (r) {
+              if (!r.ok) throw new Error('HTTP ' + r.status);
+              return r.text();
+            })
+            .then(function (md) {
+              if (currentSlug !== slug) return; // a newer view took over meanwhile
+              renderMarkdown(md);
+            })
+            .catch(function () {
+              if (currentSlug !== slug) return;
+              bodyEl.innerHTML = '<p class="blog-status">couldn’t load this post. it may have wandered off.</p>';
+            });
+        });
+      }
+
+      document.getElementById('blog-back').addEventListener('click', function (e) {
+        e.preventDefault();
+        showList();
+      });
+
+      // Back/forward buttons restore the view the hash points at
+      window.addEventListener('popstate', function () {
+        var h = location.hash || '';
+        if (h.indexOf('#blog') !== 0) return;
+        if (window.__currentPage !== 'blog' && window.__setActivePage) {
+          window.__setActivePage('blog');
+        }
+        var slug = h.length > 6 ? safeDecode(h.slice(6)) : '';
+        if (slug) openPost(slug, true);
+        else showList(true);
+      });
+
+      // Lazy-load the post list the first time the blog page is opened
+      var navBlog = document.querySelector('.top-navbar a[data-page="blog"]');
+      if (navBlog) navBlog.addEventListener('click', function () {
+        history.replaceState(null, '', '#blog');
+        loadPosts();
+      });
+
+      // "Zesty Writes" link in the home header opens the blog page too
+      var homeBlogLink = document.getElementById('home-blog-link');
+      if (homeBlogLink) homeBlogLink.addEventListener('click', function (e) {
+        e.preventDefault();
+        if (navBlog) navBlog.click();
+      });
+
+      // Deep links: #blog or #blog/<slug>
+      var hash = location.hash || '';
+      if (hash.indexOf('#blog') === 0 && window.__setActivePage) {
+        window.__setActivePage('blog');
+        var slug = hash.length > 6 ? safeDecode(hash.slice(6)) : '';
+        if (slug) openPost(slug);
+        else loadPosts();
+      }
     })();
   </script>
 
@@ -1408,7 +1649,7 @@
             ['cat about', 'read about.md'],
             ['cat skills', 'list tech stack'],
             ['social', 'social links'],
-            ['goto <page>', 'navigate: home | projects | about'],
+            ['goto <page>', 'navigate: home | projects | about | blog'],
             ['theme', 'toggle light/dark'],
             ['clear', 'clear terminal  (ctrl+l)']
           ];
@@ -1427,7 +1668,7 @@
           if (args[0] === 'projects' || args[0] === 'repos') {
             lsProjects();
           } else {
-            ['projects/', 'about.md', 'skills', 'social', 'blog -> wickstrom.tech'].forEach(function (item) {
+            ['projects/', 'about.md', 'skills', 'social', 'blog/'].forEach(function (item) {
               printHTML('<span class="term-accent">' + escapeHTML(item) + '</span>');
             });
           }
@@ -1470,7 +1711,7 @@
         },
         goto: function (args) {
           var page = (args[0] || '').toLowerCase();
-          var valid = ['home', 'projects', 'about'];
+          var valid = ['home', 'projects', 'about', 'blog'];
           if (valid.indexOf(page) === -1) {
             printLine('goto: unknown page "' + (page || '<empty>') + '". try: ' + valid.join(' | '), 'term-err');
             return;
@@ -1557,7 +1798,7 @@
         } else if (e.key === 'Tab') {
           e.preventDefault();
           var partial = termInput.value.toLowerCase();
-          var pool = Object.keys(COMMANDS).concat(['ls projects', 'cat about', 'cat skills', 'goto home', 'goto projects', 'goto about']);
+          var pool = Object.keys(COMMANDS).concat(['ls projects', 'cat about', 'cat skills', 'goto home', 'goto projects', 'goto about', 'goto blog']);
           for (var i = 0; i < pool.length; i++) {
             if (pool[i].indexOf(partial) === 0) {
               termInput.value = pool[i];
