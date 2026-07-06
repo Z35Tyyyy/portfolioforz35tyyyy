@@ -498,6 +498,27 @@ button:active {
     justify-content: center;
   }
 
+  /* label + value pairs share one line (Rank · Voyager, B10GS · Zesty Writes) */
+  .header tr {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  /* the global *+* margin misaligns cells within a flex row */
+  .header tr > * {
+    margin-top: 0;
+  }
+
+  .header th {
+    width: auto !important;
+    flex: 0 0 auto;
+  }
+
+  .header th + td {
+    width: auto !important;
+    flex: 1 1 0;
+  }
+
   .top-navbar {
     gap: 1.2rem;
     padding: 0.5rem 1ch;
@@ -1422,6 +1443,12 @@ a:hover {
   mix-blend-mode: screen;
 }
 
+@media screen and (max-width: 768px) {
+  #bottom-right-gif {
+    height: 2.4rem;
+  }
+}
+
 html[data-theme='light'] #bottom-right-gif {
   display: none;
 }
@@ -1459,6 +1486,12 @@ html[data-theme='light'] #bottom-right-gif {
   padding: 1rem 0;
   background: rgba(247, 247, 247, 0.03);
   overflow: hidden;
+}
+
+@media screen and (max-width: 768px) {
+  .dino-game-wrapper {
+    padding-bottom: 2.25rem;
+  }
 }
 
 [data-theme="light"] .dino-game-wrapper {
@@ -1936,6 +1969,12 @@ html[data-theme='light'] #bottom-right-gif {
   padding: 0.6rem 0;
   text-decoration: none;
   border-bottom: 1px dashed var(--divider-color);
+}
+
+/* the section-wrapper already closes the list with a dashed border —
+   a separator on the last row would double it */
+.blog-posts li:last-child .blog-post-link {
+  border-bottom: none;
 }
 
 .blog-post-title {
