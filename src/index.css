@@ -691,6 +691,14 @@ a:hover {
   border-bottom: 1px dashed var(--divider-color);
 }
 
+/* phones: desktop section air stacks up to ~90px of dead space */
+@media screen and (max-width: 600px) {
+  .section-wrapper {
+    margin: 1.5rem 0;
+    padding: 1.25rem 0;
+  }
+}
+
 .section-label {
   font-size: 1.1rem;
   margin: 0;
@@ -1073,6 +1081,24 @@ a:hover {
   }
 }
 
+/* phones: smaller arrows anchored over the card image, off the title text */
+@media screen and (max-width: 600px) {
+  .pow-arrow {
+    width: 36px;
+    height: 36px;
+    top: 90px;
+    transform: none;
+  }
+
+  .pow-arrow:hover {
+    transform: none;
+  }
+
+  .pow-arrow:active {
+    transform: scale(0.92);
+  }
+}
+
 @media (hover: none) {
   .pow-slide.pw-card:hover {
     transform: scale(0.96);
@@ -1419,6 +1445,34 @@ a:hover {
   .logoloop-fade.fade-left,
   .logoloop-fade.fade-right {
     width: 28px;
+  }
+
+  /* compact banner: the desktop 32px/60px marquee reads huge on a phone */
+  .logoloop-img {
+    height: 20px !important;
+  }
+
+  .logoloop-css-marquee {
+    gap: 28px !important;
+  }
+
+  .logoloop-item {
+    font-size: 0.72rem;
+    --logoloop-gap: 28px;
+  }
+
+  .logoloop-title {
+    margin-left: 0.5rem;
+  }
+
+  /* pull the two rows together: 30px inline spacer + global *+* margins */
+  #techstack-root .logoloop-root,
+  #techstack-root .logoloop-root + div {
+    margin-top: 0;
+  }
+
+  #techstack-root .logoloop-root + div {
+    height: 14px !important;
   }
 }
 
