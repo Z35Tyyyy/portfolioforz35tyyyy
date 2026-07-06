@@ -188,8 +188,8 @@
                 class="term-prompt-path">~</span><span class="term-prompt-sep">$</span></span>
             <span class="term-typed" id="term-typed"></span>
             <span class="term-cursor">&#9646;</span>
-            <input id="term-input" type="text" autocomplete="off" autocapitalize="off" spellcheck="false"
-              aria-label="Terminal input" />
+            <input id="term-input" type="text" autocomplete="off" autocapitalize="off" autocorrect="off"
+              enterkeyhint="go" spellcheck="false" aria-label="Terminal input" />
           </div>
         </div>
       </div>
@@ -437,7 +437,7 @@
       <!-- Dino Game Section -->
       <div class="section-wrapper">
         <h3 class="section-label"><span class="asterisk">*</span> have ADHD?</h3>
-        <p class="dino-hint">press space or ↑ to start</p>
+        <p class="dino-hint"><span class="dino-hint-key">press space or ↑ to start</span><span class="dino-hint-tap">tap the game to start</span></p>
         <div data-speed="6" data-mute-audio="true" data-save-high-score="true" class="dinogame-shortcode">
           <div id="dino-game-wrapper" class="dino-game-wrapper">
             <div class="dino-icon dino-initial-icon" alt=""></div>
@@ -968,7 +968,7 @@
     const row1Logos = [
       { src: 'https://cdn.simpleicons.org/c/888888', title: 'C' },
       { src: 'https://cdn.simpleicons.org/cplusplus/888888', title: 'C++' },
-      { src: 'https://cdn.simpleicons.org/css3/888888', title: 'CSS3' },
+      { src: 'https://cdn.simpleicons.org/css/888888', title: 'CSS3' },
       { src: 'https://cdn.simpleicons.org/html5/888888', title: 'HTML5' },
       { src: 'https://cdn.simpleicons.org/javascript/888888', title: 'JavaScript' },
       { src: 'https://cdn.simpleicons.org/typescript/888888', title: 'TypeScript' },
@@ -989,7 +989,7 @@
     ];
 
     const row2Logos = [
-      { src: 'https://cdn.simpleicons.org/amazonaws/888888', title: 'AWS' },
+      { src: 'https://api.iconify.design/simple-icons:amazonwebservices.svg?color=%23888888', title: 'AWS' },
       { src: 'https://cdn.simpleicons.org/googlecloud/888888', title: 'Google Cloud' },
       { src: 'https://cdn.simpleicons.org/cloudflare/888888', title: 'Cloudflare' },
       { src: 'https://cdn.simpleicons.org/netlify/888888', title: 'Netlify' },
@@ -1083,6 +1083,21 @@
 
       carousel.addEventListener('mouseenter', stopAutoplay);
       carousel.addEventListener('mouseleave', startAutoplay);
+
+      // Touch: pause autoplay while interacting, swipe to navigate
+      var touchX = null;
+      carousel.addEventListener('touchstart', function (e) {
+        stopAutoplay();
+        touchX = e.touches[0].clientX;
+      }, { passive: true });
+      carousel.addEventListener('touchend', function (e) {
+        if (touchX !== null) {
+          var dx = e.changedTouches[0].clientX - touchX;
+          if (Math.abs(dx) > 40) goTo(currentIndex + (dx < 0 ? 1 : -1));
+          touchX = null;
+        }
+        startAutoplay();
+      }, { passive: true });
 
       // Pause when tab is hidden — saves CPU
       document.addEventListener('visibilitychange', function () {
@@ -1413,7 +1428,7 @@
       camera.lookAt(0, 0, -2);
 
       var renderer = new THREE.WebGLRenderer({ canvas: canvas, antialias: true, alpha: true });
-      renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio, window.matchMedia('(max-width: 600px)').matches ? 1.5 : 2));
 
       var grid;
       function buildGrid() {
@@ -1474,7 +1489,15 @@
       resize();
 
       var running = true;
-      document.addEventListener('visibilitychange', function () { running = !document.hidden; });
+      // Pause rendering when the hero is offscreen (scrolled past or fake-routed
+      // away) as well as when the tab is hidden — saves GPU/battery on phones.
+      var onscreen = true;
+      function updateRunning() { running = onscreen && !document.hidden; }
+      new IntersectionObserver(function (entries) {
+        onscreen = entries[0].isIntersecting;
+        updateRunning();
+      }).observe(container);
+      document.addEventListener('visibilitychange', updateRunning);
 
       var clock = new THREE.Clock();
       (function animate() {
@@ -1577,7 +1600,8 @@
           printLine('no public repos found', 'term-muted');
           return;
         }
-        var nameWidth = Math.min(28, repos.reduce(function (a, r) {
+        // narrow phone terminals (~40 columns) can't fit the aligned 28-char column
+        var nameWidth = Math.min(window.matchMedia('(max-width: 600px)').matches ? 16 : 28, repos.reduce(function (a, r) {
           return Math.max(a, r.name.length);
         }, 8));
 

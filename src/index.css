@@ -474,11 +474,12 @@ button:active {
   }
 
   body {
-    padding: calc(var(--line-height) + 2rem) 1ch var(--line-height);
+    padding: 0 1ch var(--line-height);
   }
 
   .header td,
-  .header th {
+  .header th,
+  .header tr td:last-child {
     display: block;
     width: 100%;
     text-align: left;
@@ -490,21 +491,60 @@ button:active {
   }
 
   .top-navbar a {
-    font-size: 0.75rem;
+    font-size: 0.8rem;
+    padding: 0.6rem 0.2rem;
+  }
+
+  .theme-toggle {
+    padding: 0.6rem;
+  }
+
+  .social-icon {
+    width: 40px;
+    height: 40px;
+  }
+
+  .social-links {
+    gap: 0.8rem;
+  }
+
+  #app {
+    background-attachment: scroll;
   }
 }
 
 @media screen and (max-width: 480px) {
-  html {
-    font-size: 13px;
-  }
-
   table,
   th,
   td {
     width: 100% !important;
     display: block;
     box-sizing: border-box;
+  }
+}
+
+/* Touch devices: hover-only decorations off */
+@media (hover: none) {
+  .top-navbar a::after,
+  .social-icon::after {
+    content: none;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .page-header-inner {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .page-header-title {
+    border-right: none;
+    border-bottom: 1px solid var(--divider-color);
+    padding: 1rem 2ch;
+  }
+
+  .page-header-desc {
+    padding: 1rem 2ch;
   }
 }
 
@@ -863,6 +903,13 @@ a:hover {
   transition: color 0.2s, transform 0.2s;
 }
 
+@media (hover: none) and (pointer: coarse) {
+  .pw-link {
+    padding: 0.7rem 0.5rem;
+    margin: -0.7rem -0.5rem;
+  }
+}
+
 .pw-link:hover {
   color: var(--accent-color);
   transform: translateY(-1px);
@@ -926,6 +973,7 @@ a:hover {
 }
 
 .pow-dot {
+  position: relative;
   width: 8px;
   height: 8px;
   border-radius: 50%;
@@ -936,6 +984,13 @@ a:hover {
   padding: 0;
   margin: 0;
   transition: opacity 0.3s, transform 0.2s, background 0.3s;
+}
+
+/* enlarge the tap area without changing the visual */
+.pow-dot::after {
+  content: "";
+  position: absolute;
+  inset: -8px;
 }
 
 .pow-dot:hover {
@@ -964,18 +1019,34 @@ a:hover {
   }
 
   .pow-slide.pw-card .pw-image {
-    height: 200px;
+    height: 180px;
+  }
+
+  .pow-dots {
+    gap: 16px;
   }
 }
 
-@media screen and (max-width: 600px) {
-  .pow-slide.pw-card {
-    padding: 1.2rem;
-    gap: 0.8rem;
+/* Touch devices: arrows must be visible (no hover to reveal them) and
+   tapped cards must not stay "lifted" by sticky :hover */
+@media (hover: none) and (pointer: coarse) {
+  .pow-arrow {
+    opacity: 0.85;
+    width: 40px;
+    height: 40px;
+  }
+}
+
+@media (hover: none) {
+  .pow-slide.pw-card:hover {
+    transform: scale(0.96);
+    border-color: var(--divider-color);
   }
 
-  .pow-slide.pw-card .pw-image {
-    height: 180px;
+  .pw-tech-icon,
+  [data-theme="light"] .pw-tech-icon {
+    filter: none;
+    opacity: 0.9;
   }
 }
 
@@ -1113,6 +1184,19 @@ a:hover {
   width: 15px;
   height: 15px;
   margin: 0;
+}
+
+@media (hover: none) and (pointer: coarse) {
+  .work-site {
+    padding: 0.7rem;
+    margin: -0.7rem;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .work-meta {
+    text-align: left;
+  }
 }
 
 .work-site:hover {
@@ -1288,6 +1372,20 @@ a:hover {
   animation-play-state: paused;
 }
 
+/* sticky :hover on touch would freeze the marquee after a tap */
+@media (hover: none) {
+  .logoloop-hoverable:hover .logoloop-css-marquee {
+    animation-play-state: running;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .logoloop-fade.fade-left,
+  .logoloop-fade.fade-right {
+    width: 28px;
+  }
+}
+
 @keyframes logo-marquee {
   0% {
     transform: translateX(0);
@@ -1324,12 +1422,28 @@ html[data-theme='light'] #bottom-right-gif {
   opacity: 0.6;
 }
 
+.dino-hint-tap {
+  display: none;
+}
+
+@media (hover: none) and (pointer: coarse) {
+  .dino-hint-key {
+    display: none;
+  }
+
+  .dino-hint-tap {
+    display: inline;
+  }
+}
+
 .dino-game-wrapper {
   display: block;
   border: 1px solid var(--text-color-alt);
   border-radius: 6px;
   margin: 0 auto;
-  padding: 1rem 1.5rem;
+  /* no side padding: the game measures paddingLeft at init, so the render
+     spans edge to edge of the frame */
+  padding: 1rem 0;
   background: rgba(247, 247, 247, 0.03);
   overflow: hidden;
 }
@@ -1433,6 +1547,28 @@ html[data-theme='light'] #bottom-right-gif {
 
 .polaroid-card:hover .polaroid-img {
   transform: scale(1.08);
+}
+
+/* touch devices: taps must not latch the hover lift/zoom/recolor */
+@media (hover: none) {
+  .polaroid-card:hover .polaroid-frame {
+    border-color: var(--divider-color);
+    box-shadow: none;
+  }
+
+  [data-theme="light"] .polaroid-card:hover .polaroid-frame {
+    box-shadow: none;
+  }
+
+  .polaroid-card:hover .polaroid-img {
+    transform: none;
+  }
+
+  .polaroid-body .pw-tag:hover {
+    background-color: transparent !important;
+    color: inherit !important;
+    transform: none !important;
+  }
 }
 
 .polaroid-image::after {
@@ -1576,6 +1712,12 @@ html[data-theme='light'] #bottom-right-gif {
   }
 }
 
+@media (prefers-reduced-motion: reduce) {
+  .polaroid-body .pw-tag {
+    animation: none;
+  }
+}
+
 @keyframes polaroidIn {
   from {
     opacity: 0;
@@ -1624,6 +1766,11 @@ html[data-theme='light'] #bottom-right-gif {
 
   .polaroid-card {
     --tilt: 0deg !important;
+  }
+
+  .polaroid-link {
+    font-size: 0.9rem;
+    padding: 0.6rem 1ch 0.4rem 0;
   }
 }
 
@@ -1744,10 +1891,14 @@ html[data-theme='light'] #bottom-right-gif {
   .about-photo img {
     height: auto;
     width: 100%;
+    /* portrait photos would otherwise stack ~490px tall each */
+    max-height: 320px;
+    object-fit: cover;
   }
 
   .about-photo figcaption {
     max-width: none;
+    font-size: 0.8rem;
   }
 }
 
@@ -1823,6 +1974,11 @@ html[data-theme='light'] #bottom-right-gif {
   text-transform: none;
 }
 
+.blog-post-title,
+.blog-title {
+  overflow-wrap: anywhere;
+}
+
 .blog-byline {
   font-size: 0.8rem;
   color: var(--text-color-alt);
@@ -1834,6 +1990,8 @@ html[data-theme='light'] #bottom-right-gif {
 .blog-body {
   font-size: 0.95rem;
   line-height: 1.65;
+  /* long tokens (URLs, hashes, inline code) must wrap — the page clips, not scrolls */
+  overflow-wrap: anywhere;
 }
 
 .blog-body h1,
@@ -1897,6 +2055,21 @@ html[data-theme='light'] #bottom-right-gif {
 
 .blog-body blockquote *+* {
   margin-top: 0.5rem;
+}
+
+@media screen and (max-width: 600px) {
+  .blog-back {
+    padding: 0.6rem 2ch 0.6rem 0;
+    margin-bottom: 0.6rem;
+  }
+
+  .blog-post-link {
+    padding: 0.85rem 0;
+  }
+
+  .blog-post-date {
+    font-size: 0.8rem;
+  }
 }
 
 /* ====== 3D Terminal Hero ====== */
@@ -2052,6 +2225,8 @@ html[data-theme='light'] #bottom-right-gif {
   margin: 0 !important;
   background: transparent !important;
   font: inherit !important;
+  /* >=16px stops iOS focus auto-zoom; the input is opacity:0 so nothing visible changes */
+  font-size: 16px !important;
   cursor: text !important;
   z-index: 3 !important;
   -webkit-appearance: none !important;
@@ -2065,9 +2240,14 @@ html[data-theme='light'] #bottom-right-gif {
   .hero-3d { height: 360px; }
   .hero-3d .term-frame {
     width: 92%;
-    font-size: 0.74rem;
+    font-size: 0.85rem;
     backdrop-filter: none;
     -webkit-backdrop-filter: none;
   }
   .hero-3d .term-body { min-height: 140px; max-height: 180px; }
+  .hero-3d .term-typed {
+    white-space: pre-wrap;
+    word-break: break-all;
+    min-width: 0;
+  }
 }
