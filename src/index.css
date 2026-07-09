@@ -1487,19 +1487,28 @@ a:hover {
 }
 
 
-/* Dark Mode GIF Easter Egg — sits right of the theme toggle in the navbar */
+/* Dark Mode GIF Easter Egg — desktop: pinned to the bottom-right corner */
 #bottom-right-gif {
-  height: 1.8rem;
-  width: auto;
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  max-width: 200px;
   margin: 0;
   pointer-events: none;
+  z-index: 50;
   opacity: 0.8;
   mix-blend-mode: screen;
 }
 
+/* Phones: the fixed corner gif overlaps content on small screens, so inline
+   it in the navbar beside the theme toggle instead */
 @media screen and (max-width: 768px) {
   #bottom-right-gif {
+    position: static;
+    max-width: none;
+    width: auto;
     height: 2.4rem;
+    z-index: auto;
   }
 }
 
@@ -1969,7 +1978,7 @@ html[data-theme='light'] #bottom-right-gif {
 }
 
 .about-photo img {
-  height: 210px;
+  height: 280px;
   width: auto;
   max-width: 100%;
   display: block;
