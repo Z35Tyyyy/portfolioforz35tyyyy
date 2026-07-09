@@ -1987,6 +1987,15 @@ html[data-theme='light'] #bottom-right-gif {
   background: var(--background-color-alt);
 }
 
+/* Aviation + touch-grass strips read larger on desktop. Scoped to the
+   desktop range so the max-width:640px rule below still drives the mobile
+   (full-width) layout for these photos. */
+@media screen and (min-width: 641px) {
+  .about-strip-lg .about-photo img {
+    height: 360px;
+  }
+}
+
 .about-photo figcaption {
   margin-top: 0.45rem;
   font-size: 0.72rem;
