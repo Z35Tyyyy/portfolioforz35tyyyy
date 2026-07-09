@@ -1266,6 +1266,7 @@
       var titleEl = document.getElementById('blog-title');
       var bylineEl = document.getElementById('blog-byline');
       var bodyEl = document.getElementById('blog-body');
+      var socialEnd = document.querySelector('#blog-article-view .blog-social-end');
       if (!listView || !articleView) return;
 
       var postsCache = null;   // array from posts.json
@@ -1343,6 +1344,8 @@
       }
 
       function renderMarkdown(md) {
+        // the sign-off was hidden during load; reveal it now that content is in
+        if (socialEnd) socialEnd.style.display = '';
         // strip frontmatter
         md = md.replace(/^---\r?\n[\s\S]*?\r?\n---\r?\n/, '');
         if (!window.marked || !window.DOMPurify) {
@@ -1377,6 +1380,8 @@
           if (meta.readingTime) byline += ' · ' + meta.readingTime + ' min read';
           bylineEl.textContent = byline;
           bodyEl.innerHTML = '<p class="blog-status">loading…</p>';
+          // keep the social sign-off hidden until the post actually renders
+          if (socialEnd) socialEnd.style.display = 'none';
 
           listView.style.display = 'none';
           articleView.style.display = '';
