@@ -2204,6 +2204,15 @@ html[data-theme='light'] #bottom-right-gif {
   text-align: center;
 }
 
+/* Sign-off at the end of each post: a divider separates it from the body.
+   (It lives inside the article's own section-wrapper, so no border box of
+   its own.) */
+.blog-social-end {
+  margin-top: 2.5rem;
+  padding-top: 1.8rem;
+  border-top: 1px dashed var(--divider-color);
+}
+
 /* neutralize the global "* + *" margins inside the centered footer */
 .blog-social *,
 .blog-social *+* {
